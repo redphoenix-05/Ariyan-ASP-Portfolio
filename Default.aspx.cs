@@ -24,10 +24,10 @@ namespace WebApplication1
                 System.Web.UI.WebControls.Image imgProfile = (System.Web.UI.WebControls.Image)FindControl("imgProfile");
                 
                 if (litFullName != null)
-                    litFullName.Text = "Ariyan Rahman";
+                    litFullName.Text = "Ariyan Aftab Spandan";
                 
                 if (litTagline != null)
-                    litTagline.Text = "Full Stack Developer | ASP.NET Specialist";
+                    litTagline.Text = "App Developer | Mobile & Web Specialist";
                 
                 // These will be loaded from database once we set it up
                 /* TODO: Implement database loading

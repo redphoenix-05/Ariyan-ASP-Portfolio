@@ -1,66 +1,81 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="WebApplication1.Site" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebApplication1.SiteMaster" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My Portfolio</title>
+    <title><%: Page.Title %> - Ariyan Aftab Spandan | App Developer</title>
     
-    <!-- Bootstrap CSS -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/Images/favicon.ico" />
+    
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="~/Content/Site.css" rel="stylesheet" />
     
-    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
+
 <body>
     <form id="form1" runat="server">
+        <!-- Theme Toggle Button -->
+        <div class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </div>
+
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="Default.aspx">
-                    <i class="fas fa-code me-2"></i>My Portfolio
+                <a class="navbar-brand" href="Default.aspx">
+                    <i class="fas fa-code me-2"></i>Ariyan Aftab Spandan
                 </a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="Default.aspx">Home</a>
+                            <a class="nav-link" href="Default.aspx">
+                                <i class="fas fa-home me-1"></i>Home
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="About.aspx">About</a>
+                            <a class="nav-link" href="About.aspx">
+                                <i class="fas fa-user me-1"></i>About
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Skills.aspx">Skills</a>
+                            <a class="nav-link" href="Skills.aspx">
+                                <i class="fas fa-cogs me-1"></i>Skills
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Projects.aspx">Projects</a>
+                            <a class="nav-link" href="Projects.aspx">
+                                <i class="fas fa-folder-open me-1"></i>Projects
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Achievements.aspx">Achievements</a>
+                            <a class="nav-link" href="Achievements.aspx">
+                                <i class="fas fa-trophy me-1"></i>Achievements
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Education.aspx">Education</a>
+                            <a class="nav-link" href="Contact.aspx">
+                                <i class="fas fa-envelope me-1"></i>Contact
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Certificates.aspx">Certificates</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Contact.aspx">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-outline-light btn-sm ms-2" id="themeToggle">
-                                <i class="fas fa-moon"></i>
-                            </button>
+                            <a class="nav-link" href="AdminLogin.aspx">
+                                <i class="fas fa-lock me-1"></i>Admin
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -68,37 +83,114 @@
         </nav>
 
         <!-- Main Content -->
-        <main style="margin-top: 76px;">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        <main style="padding-top: 76px;">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
         </main>
 
         <!-- Footer -->
-        <footer class="bg-dark text-light py-4 mt-5">
+        <footer class="bg-dark text-white py-4 mt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h5>My Portfolio</h5>
-                        <p class="mb-0">Building innovative solutions with passion and dedication.</p>
+                        <h5>Ariyan Aftab Spandan</h5>
+                        <p class="mb-2">App Developer specializing in mobile and web applications.</p>
+                        <p class="small">&copy; <%: DateTime.Now.Year %> Ariyan Aftab Spandan. All rights reserved.</p>
                     </div>
-                    <div class="col-md-6 text-md-end">
+                    <div class="col-md-3">
+                        <h6>Quick Links</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="Default.aspx" class="text-white-50">Home</a></li>
+                            <li><a href="About.aspx" class="text-white-50">About</a></li>
+                            <li><a href="Projects.aspx" class="text-white-50">Projects</a></li>
+                            <li><a href="Contact.aspx" class="text-white-50">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h6>Connect With Me</h6>
                         <div class="social-links">
-                            <a href="#" class="text-light me-3"><i class="fab fa-linkedin fa-lg"></i></a>
-                            <a href="#" class="text-light me-3"><i class="fab fa-github fa-lg"></i></a>
-                            <a href="#" class="text-light me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                            <a href="#" class="text-light"><i class="fab fa-facebook fa-lg"></i></a>
+                            <a href="#" class="text-white me-3" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/redphoenix-05/Ariyan-ASP-Portfolio" class="text-white me-3" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-white me-3" title="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-white" title="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
                         </div>
-                        <p class="mt-2 mb-0">&copy; <%: DateTime.Now.Year %> My Portfolio. All rights reserved.</p>
                     </div>
                 </div>
             </div>
         </footer>
+
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/Scripts/Site.js"></script>
+        
+        <asp:ContentPlaceHolder ID="ScriptContent" runat="server">
+        </asp:ContentPlaceHolder>
     </form>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="~/Scripts/Site.js"></script>
-    
-    <asp:ContentPlaceHolder ID="ScriptContent" runat="server"></asp:ContentPlaceHolder>
+    <!-- Theme Toggle Script -->
+    <script>
+        // Theme Management
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+
+            // Update active navigation link
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
