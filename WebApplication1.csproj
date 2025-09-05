@@ -74,8 +74,10 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Database\CreatePortfolioDatabase.sql" />
+    <Content Include="Database\SetupDatabase.sql" />
     <Content Include="Default.aspx" />
     <Content Include="Images\profile-placeholder.jpg" />
+    <Content Include="portfolio-demo.html" />
     <Content Include="Scripts\Site.js" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config" />
