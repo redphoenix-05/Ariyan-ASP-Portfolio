@@ -42,25 +42,25 @@
             <div class="row text-center">
                 <div class="col-md-3 mb-4">
                     <div class="stats-card">
-                        <h3 data-count="<%= ProjectsCount %>">0</h3>
+                        <h3><%= ProjectsCount %></h3>
                         <p class="mb-0">Projects Completed</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stats-card bg-success">
-                        <h3 data-count="<%= SkillsCount %>">0</h3>
+                        <h3><%= SkillsCount %></h3>
                         <p class="mb-0">Skills Mastered</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stats-card bg-warning text-dark">
-                        <h3 data-count="<%= AchievementsCount %>">0</h3>
+                        <h3><%= AchievementsCount %></h3>
                         <p class="mb-0">Achievements</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stats-card bg-info">
-                        <h3 data-count="<%= CertificatesCount %>">0</h3>
+                        <h3><%= CertificatesCount %></h3>
                         <p class="mb-0">Certifications</p>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                         <div class="col-lg-4 col-md-6 mb-4">
                             <div class="card h-100">
                                 <asp:Image ID="imgProject" runat="server" CssClass="card-img-top" 
-                                          ImageUrl='<%# Eval("ImagePath") != DBNull.Value ? Eval("ImagePath") : "~/Images/project-placeholder.jpg" %>' 
+                                          ImageUrl='<%# Eval("ImagePath") != DBNull.Value && !string.IsNullOrEmpty(Eval("ImagePath").ToString()) ? Eval("ImagePath") : "~/Images/project-placeholder.jpg" %>' 
                                           AlternateText='<%# Eval("Title") %>' />
                                 <div class="card-body">
                                     <h5 class="card-title"><%# Eval("Title") %></h5>
@@ -179,28 +179,30 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Animate counters when they come into view
-            const statsCards = document.querySelectorAll('.stats-card h3[data-count]');
+            const statsCards = document.querySelectorAll('.stats-card h3');
             
             const animateCounter = (element) => {
-                const target = parseInt(element.getAttribute('data-count'));
-                const duration = 2000; // 2 seconds
-                const start = performance.now();
-                
-                const updateCounter = (currentTime) => {
-                    const elapsed = currentTime - start;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const current = Math.floor(progress * target);
+                const target = parseInt(element.textContent);
+                if (target > 0) {
+                    const duration = 2000; // 2 seconds
+                    const start = performance.now();
                     
-                    element.textContent = current;
+                    const updateCounter = (currentTime) => {
+                        const elapsed = currentTime - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const current = Math.floor(progress * target);
+                        
+                        element.textContent = current;
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            element.textContent = target;
+                        }
+                    };
                     
-                    if (progress < 1) {
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        element.textContent = target;
-                    }
-                };
-                
-                requestAnimationFrame(updateCounter);
+                    requestAnimationFrame(updateCounter);
+                }
             };
             
             // Intersection Observer for counter animation
