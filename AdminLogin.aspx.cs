@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Security;
 using System.Web.UI;
-using WebApplication1.App_Code;
 
 namespace WebApplication1
 {
