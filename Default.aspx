@@ -13,10 +13,10 @@
                 <div class="col-lg-6">
                     <div class="hero-content">
                         <h1 class="display-4 fw-bold">
-                            <asp:Literal ID="litFullName" runat="server" Text="Your Name" />
+                            <asp:Literal ID="litFullName" runat="server" Text="Ariyan Rahman" />
                         </h1>
                         <p class="lead">
-                            <asp:Literal ID="litTagline" runat="server" Text="Full Stack Developer | Software Engineer" />
+                            <asp:Literal ID="litTagline" runat="server" Text="Full Stack Developer | ASP.NET Specialist" />
                         </p>
                         <div class="hero-buttons">
                             <a href="About.aspx" class="btn btn-light btn-lg btn-custom me-3">
@@ -42,25 +42,25 @@
             <div class="row text-center">
                 <div class="col-md-3 mb-4">
                     <div class="stats-card">
-                        <h3><%= ProjectsCount %></h3>
+                        <h3 data-count="5">5</h3>
                         <p class="mb-0">Projects Completed</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stats-card bg-success">
-                        <h3><%= SkillsCount %></h3>
+                        <h3 data-count="12">12</h3>
                         <p class="mb-0">Skills Mastered</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stats-card bg-warning text-dark">
-                        <h3><%= AchievementsCount %></h3>
+                        <h3 data-count="3">3</h3>
                         <p class="mb-0">Achievements</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stats-card bg-info">
-                        <h3><%= CertificatesCount %></h3>
+                        <h3 data-count="7">7</h3>
                         <p class="mb-0">Certifications</p>
                     </div>
                 </div>
@@ -73,26 +73,46 @@
         <div class="container">
             <h2 class="section-title">Core Skills</h2>
             <div class="row">
-                <asp:Repeater ID="rptFeaturedSkills" runat="server">
-                    <ItemTemplate>
-                        <div class="col-md-6 col-lg-4 mb-4">
-                            <div class="card h-100 text-center">
-                                <div class="card-body">
-                                    <i class="<%# Eval("IconClass") %> fa-3x text-primary mb-3"></i>
-                                    <h5 class="card-title"><%# Eval("SkillName") %></h5>
-                                    <div class="progress mt-3">
-                                        <div class="progress-bar bg-primary" role="progressbar" 
-                                             style="width: <%# Eval("ProficiencyLevel") %>%" 
-                                             aria-valuenow="<%# Eval("ProficiencyLevel") %>" 
-                                             aria-valuemin="0" aria-valuemax="100">
-                                            <%# Eval("ProficiencyLevel") %>%
-                                        </div>
-                                    </div>
+                <!-- Sample Skills for now -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="fab fa-microsoft fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">C# / ASP.NET</h5>
+                            <div class="progress mt-3">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                    90%
                                 </div>
                             </div>
                         </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="fas fa-database fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">SQL Server</h5>
+                            <div class="progress mt-3">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                    80%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <i class="fab fa-js-square fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">JavaScript</h5>
+                            <div class="progress mt-3">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    75%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="text-center mt-4">
                 <a href="Skills.aspx" class="btn btn-primary btn-custom">
@@ -107,44 +127,31 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="row">
-                <asp:Repeater ID="rptFeaturedProjects" runat="server">
-                    <ItemTemplate>
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <asp:Image ID="imgProject" runat="server" CssClass="card-img-top" 
-                                          ImageUrl='<%# Eval("ImagePath") != DBNull.Value && !string.IsNullOrEmpty(Eval("ImagePath").ToString()) ? Eval("ImagePath") : "~/Images/project-placeholder.jpg" %>' 
-                                          AlternateText='<%# Eval("Title") %>' />
-                                <div class="card-body">
-                                    <h5 class="card-title"><%# Eval("Title") %></h5>
-                                    <p class="card-text"><%# Eval("Description").ToString().Length > 100 ? Eval("Description").ToString().Substring(0, 100) + "..." : Eval("Description") %></p>
-                                    <div class="mb-2">
-                                        <small class="text-muted">
-                                            <strong>Tech Stack:</strong> <%# Eval("TechStack") %>
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="card-footer bg-transparent">
-                                    <div class="d-flex justify-content-between">
-                                        <asp:HyperLink ID="lnkGitHub" runat="server" 
-                                                      NavigateUrl='<%# Eval("GitHubLink") %>' 
-                                                      CssClass="btn btn-outline-dark btn-sm"
-                                                      Visible='<%# !string.IsNullOrEmpty(Eval("GitHubLink").ToString()) %>'
-                                                      Target="_blank">
-                                            <i class="fab fa-github me-1"></i>Code
-                                        </asp:HyperLink>
-                                        <asp:HyperLink ID="lnkDemo" runat="server" 
-                                                      NavigateUrl='<%# Eval("DemoLink") %>' 
-                                                      CssClass="btn btn-primary btn-sm"
-                                                      Visible='<%# !string.IsNullOrEmpty(Eval("DemoLink").ToString()) %>'
-                                                      Target="_blank">
-                                            <i class="fas fa-external-link-alt me-1"></i>Demo
-                                        </asp:HyperLink>
-                                    </div>
-                                </div>
+                <!-- Sample Project for now -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img src="~/Images/project-placeholder.jpg" class="card-img-top" alt="Portfolio Website" />
+                        <div class="card-body">
+                            <h5 class="card-title">Portfolio Website</h5>
+                            <p class="card-text">A responsive personal portfolio website built with ASP.NET Web Forms, featuring admin panel and contact system.</p>
+                            <div class="mb-2">
+                                <small class="text-muted">
+                                    <strong>Tech Stack:</strong> ASP.NET Web Forms, C#, SQL Server, Bootstrap
+                                </small>
                             </div>
                         </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+                        <div class="card-footer bg-transparent">
+                            <div class="d-flex justify-content-between">
+                                <a href="https://github.com/redphoenix-05/Ariyan-ASP-Portfolio" class="btn btn-outline-dark btn-sm" target="_blank">
+                                    <i class="fab fa-github me-1"></i>Code
+                                </a>
+                                <a href="#" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-external-link-alt me-1"></i>Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="text-center mt-4">
                 <a href="Projects.aspx" class="btn btn-primary btn-custom">
@@ -179,10 +186,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Animate counters when they come into view
-            const statsCards = document.querySelectorAll('.stats-card h3');
+            const statsCards = document.querySelectorAll('.stats-card h3[data-count]');
             
             const animateCounter = (element) => {
-                const target = parseInt(element.textContent);
+                const target = parseInt(element.getAttribute('data-count'));
                 if (target > 0) {
                     const duration = 2000; // 2 seconds
                     const start = performance.now();
