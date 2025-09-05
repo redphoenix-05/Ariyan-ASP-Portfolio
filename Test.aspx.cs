@@ -1,5 +1,6 @@
 using System;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
@@ -7,12 +8,26 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Basic page load - no control access for now
+            if (!IsPostBack)
+            {
+                Label lblMessage = (Label)FindControl("lblMessage");
+                if (lblMessage != null)
+                {
+                    lblMessage.Text = $"Page loaded successfully at {DateTime.Now:yyyy-MM-dd HH:mm:ss}";
+                }
+            }
         }
 
         protected void btnTest_Click(object sender, EventArgs e)
         {
-            // Will be implemented once designer files are generated
+            Literal litTime = (Literal)FindControl("litTime");
+            Panel pnlResult = (Panel)FindControl("pnlResult");
+            
+            if (litTime != null)
+                litTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            
+            if (pnlResult != null)
+                pnlResult.Visible = true;
         }
     }
 }

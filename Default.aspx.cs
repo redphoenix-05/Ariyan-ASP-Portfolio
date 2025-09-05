@@ -1,5 +1,6 @@
 using System;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
@@ -17,9 +18,16 @@ namespace WebApplication1
         {
             try
             {
-                // Set basic portfolio info
-                litFullName.Text = "Ariyan Rahman";
-                litTagline.Text = "Full Stack Developer | ASP.NET Specialist";
+                // Find controls using FindControl method
+                Literal litFullName = (Literal)FindControl("litFullName");
+                Literal litTagline = (Literal)FindControl("litTagline");
+                System.Web.UI.WebControls.Image imgProfile = (System.Web.UI.WebControls.Image)FindControl("imgProfile");
+                
+                if (litFullName != null)
+                    litFullName.Text = "Ariyan Rahman";
+                
+                if (litTagline != null)
+                    litTagline.Text = "Full Stack Developer | ASP.NET Specialist";
                 
                 // These will be loaded from database once we set it up
                 /* TODO: Implement database loading
@@ -29,10 +37,12 @@ namespace WebApplication1
                 if (dt.Rows.Count > 0)
                 {
                     DataRow row = dt.Rows[0];
-                    litFullName.Text = row["FullName"].ToString();
-                    litTagline.Text = row["Tagline"].ToString();
+                    if (litFullName != null)
+                        litFullName.Text = row["FullName"].ToString();
+                    if (litTagline != null)
+                        litTagline.Text = row["Tagline"].ToString();
                     
-                    if (!string.IsNullOrEmpty(row["ProfileImagePath"].ToString()))
+                    if (!string.IsNullOrEmpty(row["ProfileImagePath"].ToString()) && imgProfile != null)
                     {
                         imgProfile.ImageUrl = row["ProfileImagePath"].ToString();
                     }
