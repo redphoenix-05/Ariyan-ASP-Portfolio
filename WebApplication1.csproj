@@ -76,6 +76,7 @@
     <Content Include="Database\CreatePortfolioDatabase.sql" />
     <Content Include="Database\SetupDatabase.sql" />
     <Content Include="Default.aspx" />
+    <Content Include="Images\IMAGE_PLACEHOLDER_README.txt" />
     <Content Include="Images\profile-placeholder.jpg" />
     <Content Include="portfolio-demo.html" />
     <Content Include="Scripts\Site.js" />
@@ -119,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE" />
+    <Content Include="IMAGE_ORGANIZATION_GUIDE.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />

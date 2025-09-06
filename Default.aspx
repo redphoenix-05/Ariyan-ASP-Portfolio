@@ -35,7 +35,7 @@
                 <div class="col-lg-6 text-center">
                     <div class="slide-up">
                         <asp:Image ID="imgProfile" runat="server" CssClass="profile-img img-fluid" 
-                                  ImageUrl="~/Images/profile-placeholder.jpg" AlternateText="Ariyan Aftab Spandan" />
+                                  ImageUrl="~/Images/profile/profile.jpg" AlternateText="Ariyan Aftab Spandan" />
                     </div>
                 </div>
             </div>
@@ -179,7 +179,8 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
-                        <img src="https://via.placeholder.com/400x250/007bff/ffffff?text=Portfolio+App" class="card-img-top" alt="Portfolio Mobile App">
+                        <img src="~/Images/projects/project1.jpg" class="card-img-top" alt="Portfolio Mobile App" 
+                             onerror="this.src='https://via.placeholder.com/400x250/007bff/ffffff?text=Portfolio+App'">
                         <div class="card-body">
                             <h5 class="card-title">Portfolio Mobile App</h5>
                             <p class="card-text">A cross-platform mobile application showcasing my portfolio with interactive features and smooth animations.</p>
@@ -203,7 +204,8 @@
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
-                        <img src="https://via.placeholder.com/400x250/28a745/ffffff?text=E-Commerce+App" class="card-img-top" alt="E-Commerce App">
+                        <img src="~/Images/projects/project2.jpg" class="card-img-top" alt="E-Commerce App" 
+                             onerror="this.src='https://via.placeholder.com/400x250/28a745/ffffff?text=E-Commerce+App'">
                         <div class="card-body">
                             <h5 class="card-title">E-Commerce Mobile App</h5>
                             <p class="card-text">Full-featured shopping app with payment integration, user authentication, and real-time order tracking.</p>
@@ -227,7 +229,8 @@
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
-                        <img src="https://via.placeholder.com/400x250/dc3545/ffffff?text=Task+Manager" class="card-img-top" alt="Task Manager Web App">
+                        <img src="~/Images/projects/project3.jpg" class="card-img-top" alt="Task Manager Web App" 
+                             onerror="this.src='https://via.placeholder.com/400x250/dc3545/ffffff?text=Task+Manager'">
                         <div class="card-body">
                             <h5 class="card-title">Task Manager Web App</h5>
                             <p class="card-text">Productivity application with team collaboration features, real-time updates, and progress tracking.</p>

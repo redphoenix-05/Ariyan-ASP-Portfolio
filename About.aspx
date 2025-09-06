@@ -13,7 +13,7 @@
                 <div class="col-lg-5 text-center mb-4 mb-lg-0">
                     <div class="profile-image-container">
                         <asp:Image ID="imgProfileLarge" runat="server" CssClass="profile-img-large img-fluid" 
-                                  ImageUrl="~/Images/profile-placeholder.jpg" AlternateText="Ariyan Aftab Spandan" />
+                                  ImageUrl="~/Images/profile/about.jpg" AlternateText="Ariyan Aftab Spandan" />
                         <div class="profile-overlay">
                             <div class="profile-social">
                                 <asp:HyperLink ID="lnkLinkedIn" runat="server" CssClass="social-link" Visible="false" Target="_blank">
@@ -100,23 +100,23 @@
                 <div class="col-md-3 mb-4">
                     <div class="stat-card">
                         <h3 class="stat-number" data-count="5">
-                            <asp:Literal ID="litProjectsCount" runat="server" Text="5" />
+                            <asp:Literal ID="litProjectsCount" runat="server" Text="8" />
                         </h3>
-                        <p class="stat-label">Projects Completed</p>
+                        <p class="stat-label">Apps Developed</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stat-card">
                         <h3 class="stat-number" data-count="12">
-                            <asp:Literal ID="litSkillsCount" runat="server" Text="12" />
+                            <asp:Literal ID="litSkillsCount" runat="server" Text="15" />
                         </h3>
-                        <p class="stat-label">Skills Mastered</p>
+                        <p class="stat-label">Technologies</p>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stat-card">
                         <h3 class="stat-number" data-count="3">
-                            <asp:Literal ID="litAchievementsCount" runat="server" Text="3" />
+                            <asp:Literal ID="litAchievementsCount" runat="server" Text="5" />
                         </h3>
                         <p class="stat-label">Achievements</p>
                     </div>
@@ -124,7 +124,7 @@
                 <div class="col-md-3 mb-4">
                     <div class="stat-card">
                         <h3 class="stat-number" data-count="7">
-                            <asp:Literal ID="litCertificatesCount" runat="server" Text="7" />
+                            <asp:Literal ID="litCertificatesCount" runat="server" Text="12" />
                         </h3>
                         <p class="stat-label">Certifications</p>
                     </div>
@@ -299,8 +299,57 @@
         </div>
     </section>
 
-    <!-- What I Do Section -->
+    <!-- Certificates Section -->
     <section class="py-5 services-section">
+        <div class="container">
+            <h2 class="section-title">Certificates & Achievements</h2>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img src="~/Images/certificates/certificate1.jpg" class="card-img-top" alt="Certificate 1" 
+                             onerror="this.src='https://via.placeholder.com/400x300/007bff/ffffff?text=Certificate+1'">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Professional Certification</h5>
+                            <p class="card-text">Advanced mobile app development certification</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img src="~/Images/certificates/certificate2.jpg" class="card-img-top" alt="Certificate 2" 
+                             onerror="this.src='https://via.placeholder.com/400x300/28a745/ffffff?text=Certificate+2'">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Cloud Computing Certificate</h5>
+                            <p class="card-text">AWS/Azure cloud services certification</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img src="~/Images/certificates/certificate3.jpg" class="card-img-top" alt="Certificate 3" 
+                             onerror="this.src='https://via.placeholder.com/400x300/dc3545/ffffff?text=Certificate+3'">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Database Management</h5>
+                            <p class="card-text">Advanced database design and optimization</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img src="~/Images/certificates/certificate4.jpg" class="card-img-top" alt="Certificate 4" 
+                             onerror="this.src='https://via.placeholder.com/400x300/ffc107/000000?text=Certificate+4'">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">UI/UX Design</h5>
+                            <p class="card-text">User interface and experience design principles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What I Do Section -->
+    <section class="py-5 skills-section">
         <div class="container">
             <h2 class="section-title">What I Do</h2>
             <div class="row">
