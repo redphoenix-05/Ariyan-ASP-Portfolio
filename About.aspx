@@ -6,49 +6,31 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- About Hero Section -->
-    <section class="about-hero-section">
+    <!-- About Hero Section with Same Design as Home -->
+    <section class="hero-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5 text-center mb-4 mb-lg-0">
-                    <div class="profile-image-container">
-                        <asp:Image ID="imgProfileLarge" runat="server" CssClass="profile-img-large img-fluid" 
-                                  ImageUrl="~/Images/profile/about.jpg" AlternateText="Ariyan Aftab Spandan" />
-                        <div class="profile-overlay">
-                            <div class="profile-social">
-                                <asp:HyperLink ID="lnkLinkedIn" runat="server" CssClass="social-link" Visible="false" Target="_blank">
-                                    <i class="fab fa-linkedin"></i>
-                                </asp:HyperLink>
-                                <asp:HyperLink ID="lnkGitHub" runat="server" CssClass="social-link" Visible="false" Target="_blank">
-                                    <i class="fab fa-github"></i>
-                                </asp:HyperLink>
-                                <asp:HyperLink ID="lnkTwitter" runat="server" CssClass="social-link" Visible="false" Target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </asp:HyperLink>
-                                <asp:HyperLink ID="lnkFacebook" runat="server" CssClass="social-link" Visible="false" Target="_blank">
-                                    <i class="fab fa-facebook"></i>
-                                </asp:HyperLink>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="about-content">
-                        <h1 class="about-title">
-                            <asp:Literal ID="litFullName" runat="server" Text="Ariyan Aftab Spandan" />
+            <div class="row align-items-center position-relative">
+                <!-- Central Dividing Line -->
+                <div class="hero-divider"></div>
+                
+                <!-- Left Side - About Information -->
+                <div class="col-lg-6 hero-left">
+                    <div class="hero-content fade-in">
+                        <h1 class="hero-title">
+                            <asp:Literal ID="litFullName" runat="server" Text="About Me" />
                         </h1>
-                        <p class="about-tagline">
-                            <asp:Literal ID="litTagline" runat="server" Text="App Developer | Mobile & Web Specialist" />
+                        <p class="hero-tagline">
+                            <asp:Literal ID="litTagline" runat="server" Text="App & Web Developer | ML Enthusiast" />
                         </p>
-                        <div class="about-description">
+                        <div class="hero-description">
                             <asp:Literal ID="litAboutDescription" runat="server" Text="I am a passionate app developer specializing in creating innovative mobile and web applications. With expertise in modern development frameworks and a keen eye for user experience, I transform ideas into powerful, user-friendly applications that make a difference." />
                         </div>
                         
                         <!-- Contact Info -->
-                        <div class="contact-info-cards">
+                        <div class="contact-info-cards mt-4">
                             <div class="row">
                                 <div class="col-md-6 mb-3" runat="server" id="divEmail" visible="false">
-                                    <div class="info-card">
+                                    <div class="info-card-hero">
                                         <i class="fas fa-envelope"></i>
                                         <div>
                                             <h6>Email</h6>
@@ -57,7 +39,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3" runat="server" id="divPhone" visible="false">
-                                    <div class="info-card">
+                                    <div class="info-card-hero">
                                         <i class="fas fa-phone"></i>
                                         <div>
                                             <h6>Phone</h6>
@@ -65,27 +47,27 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mb-3" runat="server" id="divAddress" visible="false">
-                                    <div class="info-card">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <div>
-                                            <h6>Location</h6>
-                                            <asp:Literal ID="litAddress" runat="server" />
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         
                         <!-- Action Buttons -->
-                        <div class="about-actions">
-                            <a href="Contact.aspx" class="btn btn-primary btn-custom me-3">
+                        <div class="hero-buttons">
+                            <a href="Contact.aspx" class="btn btn-hero btn-lg btn-custom me-3">
                                 <i class="fas fa-paper-plane me-2"></i>Get In Touch
                             </a>
-                            <asp:HyperLink ID="lnkResume" runat="server" CssClass="btn btn-outline-primary btn-custom" 
-                                          Visible="false" Target="_blank">
-                                <i class="fas fa-download me-2"></i>Download Resume
-                            </asp:HyperLink>
+                            <a href="Projects.aspx" class="btn btn-hero-outline btn-lg btn-custom">
+                                <i class="fas fa-folder-open me-2"></i>View Projects
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - About Profile Photo -->
+                <div class="col-lg-6 hero-right text-center">
+                    <div class="slide-up">
+                        <div class="profile-container">
+                            <asp:Image ID="imgProfileLarge" runat="server" CssClass="profile-img-hero img-fluid" 
+                                      ImageUrl="~/Images/profile/about.jpg" AlternateText="Ariyan Aftab Spandan" />
                         </div>
                     </div>
                 </div>
@@ -195,12 +177,12 @@
                         <div class="skill-item">
                             <div class="skill-header">
                                 <span class="skill-name">
-                                    <i class="fas fa-database me-2"></i>Database Design
+                                    <i class="fas fa-brain me-2"></i>Machine Learning
                                 </span>
-                                <span class="skill-percentage">85%</span>
+                                <span class="skill-percentage">70%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
+                                <div class="skill-progress" style="width: 70%"></div>
                             </div>
                         </div>
                         
@@ -299,57 +281,8 @@
         </div>
     </section>
 
-    <!-- Certificates Section -->
-    <section class="py-5 services-section">
-        <div class="container">
-            <h2 class="section-title">Certificates & Achievements</h2>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <img src="~/Images/certificates/certificate1.jpg" class="card-img-top" alt="Certificate 1" 
-                             onerror="this.src='https://via.placeholder.com/400x300/007bff/ffffff?text=Certificate+1'">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Professional Certification</h5>
-                            <p class="card-text">Advanced mobile app development certification</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <img src="~/Images/certificates/certificate2.jpg" class="card-img-top" alt="Certificate 2" 
-                             onerror="this.src='https://via.placeholder.com/400x300/28a745/ffffff?text=Certificate+2'">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Cloud Computing Certificate</h5>
-                            <p class="card-text">AWS/Azure cloud services certification</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <img src="~/Images/certificates/certificate3.jpg" class="card-img-top" alt="Certificate 3" 
-                             onerror="this.src='https://via.placeholder.com/400x300/dc3545/ffffff?text=Certificate+3'">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Database Management</h5>
-                            <p class="card-text">Advanced database design and optimization</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <img src="~/Images/certificates/certificate4.jpg" class="card-img-top" alt="Certificate 4" 
-                             onerror="this.src='https://via.placeholder.com/400x300/ffc107/000000?text=Certificate+4'">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">UI/UX Design</h5>
-                            <p class="card-text">User interface and experience design principles</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- What I Do Section -->
-    <section class="py-5 skills-section">
+    <section class="py-5 services-section">
         <div class="container">
             <h2 class="section-title">What I Do</h2>
             <div class="row">
@@ -374,10 +307,10 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
-                            <i class="fas fa-paint-brush"></i>
+                            <i class="fas fa-brain"></i>
                         </div>
-                        <h5>UI/UX Design</h5>
-                        <p>Designing intuitive and engaging user interfaces that provide excellent user experiences across all platforms.</p>
+                        <h5>Machine Learning Solutions</h5>
+                        <p>Developing intelligent applications using machine learning algorithms to solve complex real-world problems.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">

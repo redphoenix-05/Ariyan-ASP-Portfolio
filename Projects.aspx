@@ -6,16 +6,57 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Projects Hero Section -->
-    <section class="about-hero-section">
+    <!-- Projects Hero Section with Same Design as Home -->
+    <section class="hero-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12 text-center">
-                    <div class="about-content">
-                        <h1 class="about-title">My Projects</h1>
-                        <p class="about-tagline">Portfolio of Mobile & Web Applications</p>
-                        <div class="about-description">
-                            <p>Here's a showcase of my recent projects, demonstrating my skills in mobile and web development across various technologies and platforms.</p>
+            <div class="row align-items-center position-relative">
+                <!-- Central Dividing Line -->
+                <div class="hero-divider"></div>
+                
+                <!-- Left Side - Projects Information -->
+                <div class="col-lg-6 hero-left">
+                    <div class="hero-content fade-in">
+                        <h1 class="hero-title">My Projects</h1>
+                        <p class="hero-tagline">Portfolio of Mobile & Web Applications</p>
+                        <div class="hero-description">
+                            <p>Here's a showcase of my recent projects, demonstrating my skills in mobile and web development across various technologies.</p>
+                            <p>From native mobile apps to machine learning solutions, each project represents innovation and technical excellence.</p>
+                        </div>
+                        <div class="hero-buttons">
+                            <a href="Skills.aspx" class="btn btn-hero btn-lg btn-custom me-3">
+                                <i class="fas fa-cogs me-2"></i>View Skills
+                            </a>
+                            <a href="Contact.aspx" class="btn btn-hero-outline btn-lg btn-custom">
+                                <i class="fas fa-handshake me-2"></i>Collaborate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Projects Visual -->
+                <div class="col-lg-6 hero-right text-center">
+                    <div class="slide-up">
+                        <div class="profile-container">
+                            <div class="projects-visual-hero">
+                                <div class="projects-grid">
+                                    <div class="project-card-mini">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>Mobile Apps</span>
+                                    </div>
+                                    <div class="project-card-mini">
+                                        <i class="fas fa-globe"></i>
+                                        <span>Web Apps</span>
+                                    </div>
+                                    <div class="project-card-mini">
+                                        <i class="fas fa-brain"></i>
+                                        <span>ML Solutions</span>
+                                    </div>
+                                    <div class="project-card-mini">
+                                        <i class="fas fa-cloud"></i>
+                                        <span>Cloud Apps</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -126,18 +167,18 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100 project-card">
-                        <img src="~/Images/projects/project3.jpg" class="card-img-top" alt="Task Manager Web App" 
-                             onerror="this.src='https://via.placeholder.com/400x250/dc3545/ffffff?text=Task+Manager+Web+App'">
+                        <img src="~/Images/projects/project3.jpg" class="card-img-top" alt="ML Analytics Platform" 
+                             onerror="this.src='https://via.placeholder.com/400x250/dc3545/ffffff?text=ML+Analytics+Platform'">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="card-title mb-0">Task Manager Web App</h5>
-                                <span class="badge bg-danger">ASP.NET</span>
+                                <h5 class="card-title mb-0">ML Analytics Platform</h5>
+                                <span class="badge bg-danger">Python</span>
                             </div>
-                            <p class="card-text">Productivity application with team collaboration features, real-time updates, and comprehensive project management tools.</p>
+                            <p class="card-text">Machine learning platform for data analysis and predictive modeling with real-time insights and visualization.</p>
                             
                             <div class="tech-stack mb-3">
                                 <small class="text-muted">
-                                    <strong>Tech:</strong> ASP.NET Core, SignalR, SQL Server, Bootstrap
+                                    <strong>Tech:</strong> Python, TensorFlow, Flask, React
                                 </small>
                             </div>
                         </div>

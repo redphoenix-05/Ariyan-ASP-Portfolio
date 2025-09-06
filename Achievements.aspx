@@ -6,16 +6,57 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Achievements Hero Section -->
-    <section class="about-hero-section">
+    <!-- Achievements Hero Section with Same Design as Home -->
+    <section class="hero-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12 text-center">
-                    <div class="about-content">
-                        <h1 class="about-title">Achievements & Certifications</h1>
-                        <p class="about-tagline">Recognition & Professional Development</p>
-                        <div class="about-description">
-                            <p>A collection of my professional achievements, certifications, and recognitions that demonstrate my commitment to continuous learning and excellence in software development.</p>
+            <div class="row align-items-center position-relative">
+                <!-- Central Dividing Line -->
+                <div class="hero-divider"></div>
+                
+                <!-- Left Side - Achievements Information -->
+                <div class="col-lg-6 hero-left">
+                    <div class="hero-content fade-in">
+                        <h1 class="hero-title">Achievements & Certifications</h1>
+                        <p class="hero-tagline">Recognition & Professional Development</p>
+                        <div class="hero-description">
+                            <p>A collection of my professional achievements, certifications, and recognitions that demonstrate my commitment to continuous learning.</p>
+                            <p>Each achievement represents dedication to excellence and innovation in software development and machine learning.</p>
+                        </div>
+                        <div class="hero-buttons">
+                            <a href="Skills.aspx" class="btn btn-hero btn-lg btn-custom me-3">
+                                <i class="fas fa-cogs me-2"></i>View Skills
+                            </a>
+                            <a href="Projects.aspx" class="btn btn-hero-outline btn-lg btn-custom">
+                                <i class="fas fa-folder-open me-2"></i>See Projects
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Achievements Visual -->
+                <div class="col-lg-6 hero-right text-center">
+                    <div class="slide-up">
+                        <div class="profile-container">
+                            <div class="achievements-visual-hero">
+                                <div class="achievements-grid">
+                                    <div class="achievement-icon-card">
+                                        <i class="fas fa-certificate"></i>
+                                        <span>12 Certs</span>
+                                    </div>
+                                    <div class="achievement-icon-card">
+                                        <i class="fas fa-trophy"></i>
+                                        <span>8 Awards</span>
+                                    </div>
+                                    <div class="achievement-icon-card">
+                                        <i class="fas fa-medal"></i>
+                                        <span>5 Hackathons</span>
+                                    </div>
+                                    <div class="achievement-icon-card">
+                                        <i class="fas fa-users"></i>
+                                        <span>50+ Mentored</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -331,76 +372,8 @@
         </div>
     </section>
 
-    <!-- Skills & Competencies Recognition -->
-    <section class="py-5 skills-section">
-        <div class="container">
-            <h2 class="section-title">Skills & Competencies Recognition</h2>
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <div class="skills-container">
-                        <h4 class="skills-category-title">
-                            <i class="fas fa-certificate me-2"></i>Technical Certifications
-                        </h4>
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                Microsoft Azure Fundamentals (AZ-900)
-                                <span class="badge bg-primary rounded-pill">2024</span>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                Google Associate Android Developer
-                                <span class="badge bg-success rounded-pill">2023</span>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                AWS Cloud Practitioner (CLF-C01)
-                                <span class="badge bg-warning rounded-pill">2023</span>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                Meta React Developer Certification
-                                <span class="badge bg-info rounded-pill">2023</span>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                Oracle Java SE Programmer
-                                <span class="badge bg-danger rounded-pill">2022</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6 mb-4">
-                    <div class="skills-container">
-                        <h4 class="skills-category-title">
-                            <i class="fas fa-trophy me-2"></i>Awards & Recognition
-                        </h4>
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                Best Mobile App Developer
-                                <span class="badge bg-primary rounded-pill">2023</span>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                Hackathon Winner - 1st Place
-                                <span class="badge bg-success rounded-pill">2023</span>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                Dean's List Honor Roll
-                                <span class="badge bg-warning rounded-pill">2023</span>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                Student Developer Program
-                                <span class="badge bg-info rounded-pill">2022</span>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                Community Leadership Award
-                                <span class="badge bg-danger rounded-pill">2023</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Achievement Statistics -->
-    <section class="py-5 services-section">
+    <section class="py-5 skills-section">
         <div class="container">
             <h2 class="section-title">Achievement Statistics</h2>
             <div class="row text-center">

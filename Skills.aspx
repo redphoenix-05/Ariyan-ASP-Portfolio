@@ -6,16 +6,50 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Skills Hero Section -->
-    <section class="about-hero-section">
+    <!-- Skills Hero Section with Same Design as Home -->
+    <section class="hero-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12 text-center">
-                    <div class="about-content">
-                        <h1 class="about-title">Skills & Technologies</h1>
-                        <p class="about-tagline">My Technical Expertise</p>
-                        <div class="about-description">
-                            <p>I have extensive experience with a wide range of programming languages, frameworks, and development tools. Here's an overview of my technical skills and proficiency levels.</p>
+            <div class="row align-items-center position-relative">
+                <!-- Central Dividing Line -->
+                <div class="hero-divider"></div>
+                
+                <!-- Left Side - Skills Information -->
+                <div class="col-lg-6 hero-left">
+                    <div class="hero-content fade-in">
+                        <h1 class="hero-title">Skills & Technologies</h1>
+                        <p class="hero-tagline">My Technical Expertise</p>
+                        <div class="hero-description">
+                            <p>I have extensive experience with a wide range of programming languages, frameworks, and development tools.</p>
+                            <p>From mobile app development to machine learning, I continuously expand my skillset to deliver cutting-edge solutions.</p>
+                        </div>
+                        <div class="hero-buttons">
+                            <a href="Projects.aspx" class="btn btn-hero btn-lg btn-custom me-3">
+                                <i class="fas fa-folder-open me-2"></i>View Projects
+                            </a>
+                            <a href="Contact.aspx" class="btn btn-hero-outline btn-lg btn-custom">
+                                <i class="fas fa-envelope me-2"></i>Hire Me
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Skills Icon/Visual -->
+                <div class="col-lg-6 hero-right text-center">
+                    <div class="slide-up">
+                        <div class="profile-container">
+                            <div class="skills-visual-hero">
+                                <div class="skills-icon-grid">
+                                    <i class="fab fa-java skill-icon"></i>
+                                    <i class="fab fa-js-square skill-icon"></i>
+                                    <i class="fab fa-python skill-icon"></i>
+                                    <i class="fab fa-react skill-icon"></i>
+                                    <i class="fab fa-android skill-icon"></i>
+                                    <i class="fab fa-apple skill-icon"></i>
+                                    <i class="fas fa-brain skill-icon"></i>
+                                    <i class="fab fa-microsoft skill-icon"></i>
+                                    <i class="fas fa-database skill-icon"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -397,15 +431,15 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="service-card">
                         <div class="service-icon">
-                            <i class="fas fa-database"></i>
+                            <i class="fas fa-brain"></i>
                         </div>
-                        <h5>Database Management</h5>
-                        <p>Proficient in database design, optimization, and management for scalable applications.</p>
+                        <h5>Machine Learning</h5>
+                        <p>Developing intelligent solutions using machine learning algorithms and data science techniques.</p>
                         <ul class="text-start">
-                            <li>SQL Server</li>
-                            <li>MySQL</li>
-                            <li>SQLite</li>
-                            <li>Firebase</li>
+                            <li>Python & TensorFlow</li>
+                            <li>Scikit-learn</li>
+                            <li>Data Analysis</li>
+                            <li>Predictive Modeling</li>
                         </ul>
                     </div>
                 </div>
