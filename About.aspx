@@ -81,7 +81,7 @@
             <div class="row text-center">
                 <div class="col-md-3 mb-4">
                     <div class="stat-card">
-                        <h3 class="stat-number" data-count="5">
+                        <h3 class="stat-number">
                             <asp:Literal ID="litProjectsCount" runat="server" Text="8" />
                         </h3>
                         <p class="stat-label">Apps Developed</p>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stat-card">
-                        <h3 class="stat-number" data-count="12">
+                        <h3 class="stat-number">
                             <asp:Literal ID="litSkillsCount" runat="server" Text="15" />
                         </h3>
                         <p class="stat-label">Technologies</p>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stat-card">
-                        <h3 class="stat-number" data-count="3">
+                        <h3 class="stat-number">
                             <asp:Literal ID="litAchievementsCount" runat="server" Text="5" />
                         </h3>
                         <p class="stat-label">Achievements</p>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="stat-card">
-                        <h3 class="stat-number" data-count="7">
+                        <h3 class="stat-number">
                             <asp:Literal ID="litCertificatesCount" runat="server" Text="12" />
                         </h3>
                         <p class="stat-label">Certifications</p>
@@ -372,29 +372,23 @@
             skillBars.forEach(bar => skillObserver.observe(bar));
             
             // Animate stat numbers
-            const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+            const statNumbers = document.querySelectorAll('.stat-number');
             
             const animateCounter = (element) => {
-                const target = parseInt(element.getAttribute('data-count'));
+                const targetText = element.textContent || element.innerText;
+                const target = parseInt(targetText);
                 if (target > 0) {
-                    const duration = 2000;
-                    const start = performance.now();
-                    
-                    const updateCounter = (currentTime) => {
-                        const elapsed = currentTime - start;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const current = Math.floor(progress * target);
-                        
-                        element.textContent = current;
-                        
-                        if (progress < 1) {
-                            requestAnimationFrame(updateCounter);
-                        } else {
+                    let current = 0;
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
                             element.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            element.textContent = Math.floor(current);
                         }
-                    };
-                    
-                    requestAnimationFrame(updateCounter);
+                    }, 40);
                 }
             };
             

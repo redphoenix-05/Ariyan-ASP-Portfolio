@@ -77,11 +77,22 @@
     <Content Include="Database\CreatePortfolioDatabase.sql" />
     <Content Include="Database\SetupDatabase.sql" />
     <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Images\IMAGE_PLACEHOLDER_README.txt" />
     <Content Include="Images\profile-placeholder.jpg" />
     <Content Include="portfolio-demo.html" />
     <Content Include="Projects.aspx" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\Site.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Skills.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config" />
@@ -120,6 +131,9 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Projects.aspx.cs">
@@ -149,6 +163,7 @@
     <Content Include="COMPLETE_FIX_SUMMARY.md" />
     <Content Include="HERO_SECTION_DESIGN.md" />
     <Content Include="COMPLETE_PORTFOLIO_UPDATE.md" />
+    <Content Include="COMPILATION_ERROR_FIX.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />
