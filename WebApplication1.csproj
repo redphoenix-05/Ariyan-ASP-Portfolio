@@ -164,12 +164,14 @@
     <Content Include="HERO_SECTION_DESIGN.md" />
     <Content Include="COMPLETE_PORTFOLIO_UPDATE.md" />
     <Content Include="COMPILATION_ERROR_FIX.md" />
+    <Content Include="ERRORS_FIXED_SUMMARY.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />
     <Content Include="PROFILE_PICTURE_GUIDE.md" />
     <Content Include="PROFILE_UPDATE_STATUS.md" />
     <Content Include="PARSER_ERROR_FIX.md" />
+    <Content Include="PORTFOLIO_NOT_LOADING_FIX.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
