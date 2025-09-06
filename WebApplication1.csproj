@@ -126,6 +126,7 @@
     <Content Include="README.md" />
     <Content Include="PROFILE_PICTURE_GUIDE.md" />
     <Content Include="PROFILE_UPDATE_STATUS.md" />
+    <Content Include="PARSER_ERROR_FIX.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
