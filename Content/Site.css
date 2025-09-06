@@ -22,6 +22,11 @@
     --navbar-bg: #ffffff;
     --navbar-text: #212529;
     
+    /* Hero Section - Light Mode */
+    --hero-bg: #ffffff;
+    --hero-text: #212529;
+    --hero-divider: linear-gradient(180deg, var(--border-color), var(--outline-color));
+    
     /* Profile Picture Glow - Blue/Green in Light Mode */
     --profile-glow-color: #007bff;
     --profile-border-color: #28a745;
@@ -44,6 +49,11 @@
     --card-bg: #2d2d2d;
     --navbar-bg: #1a1a1a;
     --navbar-text: #ffffff;
+    
+    /* Hero Section - Dark Mode */
+    --hero-bg: #000000;
+    --hero-text: #ffffff;
+    --hero-divider: linear-gradient(180deg, var(--border-color), #ff6b7a);
     
     /* Profile Picture Glow - Red in Dark Theme */
     --profile-glow-color: #ff4757;
@@ -155,27 +165,179 @@ body {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-/* Hero Section Styles - Black Background */
+/* Hero Section with Theme-Responsive Background */
 .hero-section {
-    background: #000000 !important;
-    color: white;
+    background-color: var(--hero-bg) !important;
+    color: var(--hero-text);
     padding: 100px 0;
     min-height: 80vh;
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-.hero-section::before {
-    content: '';
+/* Hero Dividing Line in Center */
+.hero-divider {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
-    pointer-events: none;
+    left: 50%;
+    top: 10%;
+    bottom: 10%;
+    width: 4px;
+    background: var(--hero-divider);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    z-index: 1;
+    box-shadow: 0 0 20px var(--border-color);
+    animation: dividerGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes dividerGlow {
+    0% {
+        box-shadow: 0 0 20px var(--border-color);
+        opacity: 0.8;
+    }
+    100% {
+        box-shadow: 0 0 30px var(--border-color), 0 0 40px var(--border-color);
+        opacity: 1;
+    }
+}
+
+/* Hero Left Side - Information */
+.hero-left {
+    position: relative;
+    z-index: 2;
+    padding-right: 3rem;
+}
+
+.hero-right {
+    position: relative;
+    z-index: 2;
+    padding-left: 3rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: var(--hero-text);
+    background: linear-gradient(135deg, var(--border-color), var(--outline-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-tagline {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    color: var(--hero-text);
+    font-weight: 500;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    color: var(--hero-text);
+}
+
+.hero-description p {
+    margin-bottom: 1rem;
+}
+
+/* Hero Buttons */
+.btn-hero {
+    background: linear-gradient(135deg, var(--border-color), var(--outline-color));
+    border: none;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+    color: white;
+}
+
+.btn-hero-outline {
+    background: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--border-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-hero-outline:hover {
+    background: var(--border-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+}
+
+/* Profile Container for Perfect Circle */
+.profile-container {
+    position: relative;
+    display: inline-block;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+}
+
+/* Hero Profile Image - Perfect Circle */
+.profile-img-hero {
+    width: 320px !important;
+    height: 320px !important;
+    border-radius: 50% !important;
+    object-fit: cover;
+    object-position: center;
+    /* Theme-Responsive Glowing Border Effect */
+    border: 8px solid var(--profile-border-color);
+    box-shadow: 
+        0 0 25px var(--profile-glow-color),
+        0 0 50px var(--profile-glow-color),
+        0 0 75px var(--profile-glow-color),
+        0 0 100px var(--profile-glow-secondary),
+        0 0 125px var(--profile-glow-secondary);
+    transition: all 0.4s ease;
+    animation: profileGlowHero 4s ease-in-out infinite alternate;
+    display: block;
+    margin: 0 auto;
+}
+
+.profile-img-hero:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 35px var(--profile-glow-color),
+        0 0 70px var(--profile-glow-color),
+        0 0 105px var(--profile-glow-color),
+        0 0 140px var(--profile-glow-secondary),
+        0 0 175px var(--profile-glow-secondary);
+    border-color: var(--profile-glow-color);
+    border-width: 10px;
+}
+
+/* Enhanced Hero Profile Glow Animation */
+@keyframes profileGlowHero {
+    0% {
+        box-shadow: 
+            0 0 25px var(--profile-glow-color),
+            0 0 50px var(--profile-glow-color),
+            0 0 75px var(--profile-glow-color),
+            0 0 100px var(--profile-glow-secondary);
+        border-width: 8px;
+    }
+    100% {
+        box-shadow: 
+            0 0 30px var(--profile-glow-color),
+            0 0 60px var(--profile-glow-color),
+            0 0 90px var(--profile-glow-color),
+            0 0 120px var(--profile-glow-secondary),
+            0 0 150px var(--profile-glow-secondary);
+        border-width: 9px;
+    }
 }
 
 .about-hero-section {
@@ -186,7 +348,7 @@ body {
     overflow: hidden;
 }
 
-/* Profile Image Styles with Theme-Responsive Glow */
+/* Regular Profile Image for Other Pages */
 .profile-img {
     border-radius: 50% !important;
     max-width: 280px;
@@ -387,6 +549,19 @@ body {
     margin-bottom: 0.2rem;
     font-weight: 600;
     color: white;
+}
+
+/* Hero Content Styles - Theme Responsive */
+.hero-content h1 {
+    color: var(--hero-text);
+}
+
+.hero-content p {
+    color: var(--hero-text);
+}
+
+.hero-description {
+    color: var(--text-secondary) !important;
 }
 
 /* Stats Section */
@@ -712,6 +887,29 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-left, .hero-right {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .hero-divider {
+        display: none;
+    }
+    
+    .profile-container {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .profile-img-hero {
+        width: 250px !important;
+        height: 250px !important;
+    }
+    
     .about-title {
         font-size: 2rem;
     }

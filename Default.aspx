@@ -6,36 +6,44 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Hero Section -->
+    <!-- Hero Section with Theme-Responsive Background -->
     <section class="hero-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
+            <div class="row align-items-center position-relative">
+                <!-- Central Dividing Line -->
+                <div class="hero-divider"></div>
+                
+                <!-- Left Side - Information -->
+                <div class="col-lg-6 hero-left">
                     <div class="hero-content fade-in">
-                        <h1 class="display-4 fw-bold">
+                        <h1 class="display-4 fw-bold hero-title">
                             <asp:Literal ID="litFullName" runat="server" Text="Ariyan Aftab Spandan" />
                         </h1>
-                        <p class="lead">
-                            <asp:Literal ID="litTagline" runat="server" Text="App Developer | Mobile & Web Specialist" />
+                        <p class="lead hero-tagline">
+                            <asp:Literal ID="litTagline" runat="server" Text="App & Web Developer | ML Enthusiast" />
                         </p>
-                        <p class="hero-description">
-                            Creating innovative mobile and web applications with cutting-edge technology. 
-                            Passionate about building user-friendly solutions that make a difference.
-                        </p>
+                        <div class="hero-description">
+                            <p>Creating innovative mobile and web applications with cutting-edge technology.</p>
+                            <p>Passionate about building user-friendly solutions and exploring machine learning to solve real-world problems.</p>
+                        </div>
                         <div class="hero-buttons">
-                            <a href="About.aspx" class="btn btn-light btn-lg btn-custom me-3">
+                            <a href="About.aspx" class="btn btn-hero btn-lg btn-custom me-3">
                                 <i class="fas fa-user me-2"></i>About Me
                             </a>
-                            <a href="Contact.aspx" class="btn btn-outline-light btn-lg btn-custom">
+                            <a href="Contact.aspx" class="btn btn-hero-outline btn-lg btn-custom">
                                 <i class="fas fa-envelope me-2"></i>Get In Touch
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 text-center">
+                
+                <!-- Right Side - Profile Photo -->
+                <div class="col-lg-6 hero-right text-center">
                     <div class="slide-up">
-                        <asp:Image ID="imgProfile" runat="server" CssClass="profile-img img-fluid" 
-                                  ImageUrl="~/Images/profile/profile.jpg" AlternateText="Ariyan Aftab Spandan" />
+                        <div class="profile-container">
+                            <asp:Image ID="imgProfile" runat="server" CssClass="profile-img-hero img-fluid" 
+                                      ImageUrl="~/Images/profile/profile.jpg" AlternateText="Ariyan Aftab Spandan" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -138,14 +146,14 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card h-100 text-center">
                         <div class="card-body">
-                            <i class="fas fa-database fa-3x text-warning mb-3"></i>
-                            <h5 class="card-title">Database Design</h5>
+                            <i class="fas fa-brain fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title">Machine Learning</h5>
                             <div class="progress mt-3">
-                                <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                    85%
+                                <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    70%
                                 </div>
                             </div>
-                            <p class="card-text mt-2"><small class="text-muted">SQL Server, SQLite, Firebase</small></p>
+                            <p class="card-text mt-2"><small class="text-muted">Python, TensorFlow, Scikit-learn</small></p>
                         </div>
                     </div>
                 </div>
@@ -155,8 +163,8 @@
                             <i class="fas fa-cloud fa-3x text-info mb-3"></i>
                             <h5 class="card-title">Cloud Services</h5>
                             <div class="progress mt-3">
-                                <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                    70%
+                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    75%
                                 </div>
                             </div>
                             <p class="card-text mt-2"><small class="text-muted">Azure, AWS, Firebase</small></p>
@@ -165,7 +173,7 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <a href="About.aspx" class="btn btn-primary btn-custom">
+                <a href="Skills.aspx" class="btn btn-primary btn-custom">
                     <i class="fas fa-cogs me-2"></i>View All Skills
                 </a>
             </div>
@@ -232,11 +240,11 @@
                         <img src="~/Images/projects/project3.jpg" class="card-img-top" alt="Task Manager Web App" 
                              onerror="this.src='https://via.placeholder.com/400x250/dc3545/ffffff?text=Task+Manager'">
                         <div class="card-body">
-                            <h5 class="card-title">Task Manager Web App</h5>
-                            <p class="card-text">Productivity application with team collaboration features, real-time updates, and progress tracking.</p>
+                            <h5 class="card-title">ML-Powered Analytics</h5>
+                            <p class="card-text">Machine learning application for data analysis and predictive modeling with real-time insights.</p>
                             <div class="mb-2">
                                 <small class="text-muted">
-                                    <strong>Tech Stack:</strong> ASP.NET Core, SignalR, SQL Server
+                                    <strong>Tech Stack:</strong> Python, TensorFlow, Flask, React
                                 </small>
                             </div>
                         </div>
@@ -265,7 +273,7 @@
     <section class="py-5 bg-primary text-white">
         <div class="container text-center">
             <h2 class="h1 mb-4">Ready to Build Your Next App?</h2>
-            <p class="lead mb-4">Let's collaborate and bring your mobile or web application ideas to life with cutting-edge technology!</p>
+            <p class="lead mb-4">Let's collaborate and bring your mobile or web application ideas to life with cutting-edge technology and machine learning!</p>
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex flex-wrap justify-content-center gap-3">

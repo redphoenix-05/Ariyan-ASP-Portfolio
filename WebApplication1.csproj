@@ -137,6 +137,7 @@
     <Content Include="LICENSE" />
     <Content Include="IMAGE_ORGANIZATION_GUIDE.md" />
     <Content Include="DESIGN_IMPROVEMENTS_SUMMARY.md" />
+    <Content Include="COMPLETE_FIX_SUMMARY.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />

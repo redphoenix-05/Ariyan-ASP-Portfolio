@@ -27,8 +27,12 @@
             --card-bg: #ffffff;
             --navbar-bg: #ffffff;
             --navbar-text: #212529;
-            --profile-glow-color: #dc3545;
-            --profile-border-color: #ff6b7a;
+            --hero-bg: #ffffff;
+            --hero-text: #212529;
+            --hero-divider: linear-gradient(180deg, var(--border-color), var(--outline-color));
+            --profile-glow-color: #007bff;
+            --profile-border-color: #28a745;
+            --profile-glow-secondary: #28a745;
             --shadow-light: 0 2px 10px rgba(0, 123, 255, 0.1);
             --shadow-medium: 0 4px 20px rgba(40, 167, 69, 0.15);
             --shadow-heavy: 0 8px 30px rgba(0, 123, 255, 0.2);
@@ -44,8 +48,12 @@
             --card-bg: #2d2d2d;
             --navbar-bg: #1a1a1a;
             --navbar-text: #ffffff;
+            --hero-bg: #000000;
+            --hero-text: #ffffff;
+            --hero-divider: linear-gradient(180deg, var(--border-color), #ff6b7a);
             --profile-glow-color: #ff4757;
             --profile-border-color: #ff3742;
+            --profile-glow-secondary: #ff6b7a;
             --shadow-light: 0 2px 10px rgba(220, 53, 69, 0.2);
             --shadow-medium: 0 4px 20px rgba(220, 53, 69, 0.3);
             --shadow-heavy: 0 8px 30px rgba(220, 53, 69, 0.4);
@@ -65,7 +73,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Theme Toggle Button - Adjusted Position */
+        /* Theme Toggle Button */
         .theme-toggle {
             position: fixed;
             top: 10px;
@@ -94,7 +102,7 @@
             color: var(--border-color);
         }
 
-        /* Navigation Styles - White in Light Mode */
+        /* Navigation */
         .navbar {
             background-color: var(--navbar-bg) !important;
             backdrop-filter: blur(10px);
@@ -134,81 +142,179 @@
             box-shadow: 0 0 15px var(--border-color);
         }
 
-        /* Hero Section - Black Background */
+        /* Hero Section with Theme-Responsive Background */
         .hero-section {
-            background: #000000 !important;
-            color: white;
+            background-color: var(--hero-bg) !important;
+            color: var(--hero-text);
             padding: 100px 0;
             min-height: 80vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .hero-section::before {
-            content: '';
+        /* Hero Dividing Line in Center */
+        .hero-divider {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
-            pointer-events: none;
+            left: 50%;
+            top: 10%;
+            bottom: 10%;
+            width: 4px;
+            background: var(--hero-divider);
+            border-radius: 2px;
+            transform: translateX(-50%);
+            z-index: 1;
+            box-shadow: 0 0 20px var(--border-color);
+            animation: dividerGlow 3s ease-in-out infinite alternate;
         }
 
-        /* Profile Image with Enhanced Circular Red Glow */
-        .profile-img {
+        @keyframes dividerGlow {
+            0% {
+                box-shadow: 0 0 20px var(--border-color);
+                opacity: 0.8;
+            }
+            100% {
+                box-shadow: 0 0 30px var(--border-color), 0 0 40px var(--border-color);
+                opacity: 1;
+            }
+        }
+
+        /* Hero Left Side - Information */
+        .hero-left {
+            position: relative;
+            z-index: 2;
+            padding-right: 3rem;
+        }
+
+        .hero-right {
+            position: relative;
+            z-index: 2;
+            padding-left: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--hero-text);
+            background: linear-gradient(135deg, var(--border-color), var(--outline-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: var(--hero-text);
+            font-weight: 500;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            color: var(--hero-text);
+        }
+
+        .hero-description p {
+            margin-bottom: 1rem;
+        }
+
+        /* Hero Buttons */
+        .btn-hero {
+            background: linear-gradient(135deg, var(--border-color), var(--outline-color));
+            border: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 12px 30px;
+            border-radius: 25px;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+            color: white;
+        }
+
+        .btn-hero-outline {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--border-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 12px 30px;
+            border-radius: 25px;
+        }
+
+        .btn-hero-outline:hover {
+            background: var(--border-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Profile Container for Perfect Circle */
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            width: 320px;
+            height: 320px;
+            margin: 0 auto;
+        }
+
+        /* Hero Profile Image - Perfect Circle */
+        .profile-img-hero {
+            width: 320px !important;
+            height: 320px !important;
             border-radius: 50% !important;
-            max-width: 280px;
-            width: 100%;
-            height: auto;
-            aspect-ratio: 1 / 1;
             object-fit: cover;
-            /* Enhanced Glowing Red Border Effect */
-            border: 6px solid var(--profile-border-color);
+            object-position: center;
+            border: 8px solid var(--profile-border-color);
             box-shadow: 
-                0 0 20px var(--profile-glow-color),
-                0 0 40px var(--profile-glow-color),
-                0 0 60px var(--profile-glow-color),
-                0 0 80px var(--profile-glow-color),
-                0 0 100px var(--profile-glow-color);
+                0 0 25px var(--profile-glow-color),
+                0 0 50px var(--profile-glow-color),
+                0 0 75px var(--profile-glow-color),
+                0 0 100px var(--profile-glow-secondary),
+                0 0 125px var(--profile-glow-secondary);
             transition: all 0.4s ease;
-            animation: profileGlow 3s ease-in-out infinite alternate;
+            animation: profileGlowHero 4s ease-in-out infinite alternate;
             display: block;
             margin: 0 auto;
         }
 
-        .profile-img:hover {
-            transform: scale(1.08);
+        .profile-img-hero:hover {
+            transform: scale(1.05);
             box-shadow: 
-                0 0 30px var(--profile-glow-color),
-                0 0 60px var(--profile-glow-color),
-                0 0 90px var(--profile-glow-color),
-                0 0 120px var(--profile-glow-color),
-                0 0 150px var(--profile-glow-color);
+                0 0 35px var(--profile-glow-color),
+                0 0 70px var(--profile-glow-color),
+                0 0 105px var(--profile-glow-color),
+                0 0 140px var(--profile-glow-secondary),
+                0 0 175px var(--profile-glow-secondary);
             border-color: var(--profile-glow-color);
-            border-width: 8px;
+            border-width: 10px;
         }
 
-        /* Enhanced Profile Glow Animation */
-        @keyframes profileGlow {
+        @keyframes profileGlowHero {
             0% {
-                box-shadow: 
-                    0 0 20px var(--profile-glow-color),
-                    0 0 40px var(--profile-glow-color),
-                    0 0 60px var(--profile-glow-color),
-                    0 0 80px var(--profile-glow-color);
-                border-width: 6px;
-            }
-            100% {
                 box-shadow: 
                     0 0 25px var(--profile-glow-color),
                     0 0 50px var(--profile-glow-color),
                     0 0 75px var(--profile-glow-color),
-                    0 0 100px var(--profile-glow-color),
-                    0 0 125px var(--profile-glow-color);
-                border-width: 7px;
+                    0 0 100px var(--profile-glow-secondary);
+                border-width: 8px;
+            }
+            100% {
+                box-shadow: 
+                    0 0 30px var(--profile-glow-color),
+                    0 0 60px var(--profile-glow-color),
+                    0 0 90px var(--profile-glow-color),
+                    0 0 120px var(--profile-glow-secondary),
+                    0 0 150px var(--profile-glow-secondary);
+                border-width: 9px;
             }
         }
 
@@ -222,21 +328,6 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--border-color), var(--outline-color));
-            transition: all 0.5s ease;
-        }
-
-        .stat-card:hover::before {
-            left: 0;
         }
 
         .stat-card:hover {
@@ -349,25 +440,29 @@
             }
         }
 
-        /* Enhanced Info Section */
-        .info-section {
-            background: linear-gradient(135deg, #17a2b8, #007bff);
-            color: white;
-            padding: 2rem 0;
-        }
-
-        .info-card-enhanced {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .profile-img {
-                max-width: 220px;
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-left, .hero-right {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .hero-divider {
+                display: none;
+            }
+            
+            .profile-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .profile-img-hero {
+                width: 250px !important;
+                height: 250px !important;
             }
             
             .theme-toggle {
@@ -376,6 +471,22 @@
                 width: 45px;
                 height: 45px;
             }
+        }
+
+        /* Demo specific styles */
+        .demo-info {
+            background: linear-gradient(135deg, #17a2b8, #007bff);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .demo-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -411,69 +522,75 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i>Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/AdminLogin.aspx">
-                            <i class="fas fa-lock me-1"></i>Admin
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Black Background -->
+    <!-- Hero Section with New Design -->
     <section id="home" class="hero-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
+            <div class="row align-items-center position-relative">
+                <!-- Central Dividing Line -->
+                <div class="hero-divider"></div>
+                
+                <!-- Left Side - Information -->
+                <div class="col-lg-6 hero-left">
                     <div class="hero-content fade-in">
-                        <h1 class="display-4 fw-bold mb-4">Ariyan Aftab Spandan</h1>
-                        <p class="lead mb-4">App Developer | Mobile & Web Specialist</p>
-                        <p class="mb-4">Creating innovative mobile and web applications with cutting-edge technology. Passionate about building user-friendly solutions that make a difference.</p>
+                        <h1 class="hero-title">Ariyan Aftab Spandan</h1>
+                        <p class="hero-tagline">App & Web Developer | ML Enthusiast</p>
+                        <div class="hero-description">
+                            <p>Creating innovative mobile and web applications with cutting-edge technology.</p>
+                            <p>Passionate about building user-friendly solutions and exploring machine learning to solve real-world problems.</p>
+                        </div>
                         <div class="hero-buttons">
-                            <a href="#about" class="btn btn-light btn-lg btn-custom me-3">
+                            <a href="#about" class="btn btn-hero btn-lg me-3">
                                 <i class="fas fa-user me-2"></i>About Me
                             </a>
-                            <a href="#contact" class="btn btn-outline-light btn-lg btn-custom">
+                            <a href="#contact" class="btn btn-hero-outline btn-lg">
                                 <i class="fas fa-envelope me-2"></i>Get In Touch
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 text-center">
-                    <div class="slide-up position-relative">
-                        <img src="https://via.placeholder.com/280x280/333333/ffffff?text=profile.jpg" 
-                             class="profile-img img-fluid" 
-                             alt="Ariyan Aftab Spandan">
+                
+                <!-- Right Side - Profile Photo -->
+                <div class="col-lg-6 hero-right text-center">
+                    <div class="slide-up">
+                        <div class="profile-container">
+                            <img src="https://via.placeholder.com/320x320/333333/ffffff?text=Your+Profile+Photo" 
+                                 class="profile-img-hero" 
+                                 alt="Ariyan Aftab Spandan">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Enhanced Info Section -->
-    <section class="info-section">
+    <!-- Demo Info Section -->
+    <section class="demo-info">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="info-card-enhanced">
-                        <h5><i class="fas fa-palette me-2"></i>🎨 Design Updates Applied!</h5>
+                    <div class="demo-card">
+                        <h5><i class="fas fa-magic me-2"></i>🎨 New Hero Section Design!</h5>
                         <ul class="list-unstyled mb-0">
-                            <li><i class="fas fa-check text-success me-2"></i><strong>Navbar:</strong> White background in light mode</li>
-                            <li><i class="fas fa-check text-success me-2"></i><strong>Theme Toggle:</strong> Positioned perfectly</li>
-                            <li><i class="fas fa-check text-success me-2"></i><strong>Hero Background:</strong> Pure black (#000000)</li>
-                            <li><i class="fas fa-check text-success me-2"></i><strong>Profile Photo:</strong> Perfectly circular</li>
+                            <li><i class="fas fa-check text-success me-2"></i><strong>Theme-Responsive Background:</strong> White in light mode, black in dark mode</li>
+                            <li><i class="fas fa-check text-success me-2"></i><strong>Central Dividing Line:</strong> Animated glowing separator</li>
+                            <li><i class="fas fa-check text-success me-2"></i><strong>Perfect Layout:</strong> Information left, photo right</li>
+                            <li><i class="fas fa-check text-success me-2"></i><strong>ML Enthusiast:</strong> Added to tagline</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="info-card-enhanced">
-                        <h5><i class="fas fa-magic me-2"></i>✨ Enhanced Red Glow Effect</h5>
+                    <div class="demo-card">
+                        <h5><i class="fas fa-camera me-2"></i>📷 Perfect Circular Profile Photo</h5>
                         <ul class="list-unstyled mb-0">
-                            <li><i class="fas fa-check text-success me-2"></i><strong>5 Shadow Layers:</strong> Maximum depth</li>
-                            <li><i class="fas fa-check text-success me-2"></i><strong>Animated Border:</strong> Pulsing thickness</li>
-                            <li><i class="fas fa-check text-success me-2"></i><strong>Hover Enhancement:</strong> 8% scaling</li>
-                            <li><i class="fas fa-check text-success me-2"></i><strong>Perfect Circle:</strong> aspect-ratio: 1/1</li>
+                            <li><i class="fas fa-check text-success me-2"></i><strong>320x320px Perfect Circle:</strong> Not oval, guaranteed circular</li>
+                            <li><i class="fas fa-check text-success me-2"></i><strong>Enhanced Glow Effects:</strong> 5-layer animated border</li>
+                            <li><i class="fas fa-check text-success me-2"></i><strong>Theme Colors:</strong> Blue/green in light, red in dark</li>
+                            <li><i class="fas fa-check text-success me-2"></i><strong>Responsive:</strong> Scales perfectly on mobile</li>
                         </ul>
                     </div>
                 </div>
@@ -530,72 +647,22 @@
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card h-100 text-center">
                         <div class="card-body">
-                            <i class="fab fa-apple fa-3x text-secondary mb-3"></i>
-                            <h5 class="card-title">iOS Development</h5>
-                            <p class="card-text mt-2"><small class="text-muted">Swift, SwiftUI, Xcode</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 text-center">
-                        <div class="card-body">
                             <i class="fab fa-react fa-3x text-info mb-3"></i>
                             <h5 class="card-title">React Native</h5>
                             <p class="card-text mt-2"><small class="text-muted">Cross-platform mobile apps</small></p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Projects Section -->
-    <section id="projects" class="py-5 services-section">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <img src="https://via.placeholder.com/400x250/dc3545/ffffff?text=project1.jpg" class="card-img-top" alt="Project 1">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Portfolio Mobile App</h5>
-                            <p class="card-text">Cross-platform mobile application showcasing portfolio with interactive features.</p>
-                            <small class="text-muted"><strong>Tech:</strong> React Native, Firebase</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <img src="https://via.placeholder.com/400x250/dc3545/ffffff?text=project2.jpg" class="card-img-top" alt="Project 2">
-                        <div class="card-body">
-                            <h5 class="card-title">E-Commerce App</h5>
-                            <p class="card-text">Full-featured shopping app with payment integration and order tracking.</p>
-                            <small class="text-muted"><strong>Tech:</strong> Flutter, Node.js</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <img src="https://via.placeholder.com/400x250/dc3545/ffffff?text=project3.jpg" class="card-img-top" alt="Project 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Task Manager Web App</h5>
-                            <p class="card-text">Productivity app with team collaboration and real-time updates.</p>
-                            <small class="text-muted"><strong>Tech:</strong> ASP.NET Core, SignalR</small>
+                            <i class="fas fa-brain fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title">Machine Learning</h5>
+                            <p class="card-text mt-2"><small class="text-muted">Python, TensorFlow, Scikit-learn</small></p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Section -->
-    <section id="contact" class="py-5 bg-primary text-white">
-        <div class="container text-center">
-            <h2 class="h1 mb-4">Ready to Build Your Next App?</h2>
-            <p class="lead mb-4">Let's collaborate and bring your mobile or web application ideas to life!</p>
-            <a href="Contact.aspx" class="btn btn-light btn-lg btn-custom">
-                <i class="fas fa-paper-plane me-2"></i>Start a Project
-            </a>
         </div>
     </section>
 
@@ -627,7 +694,7 @@
             const themeIcon = document.getElementById('theme-icon');
             
             if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
+                body.setAttribute('data-theme', 'light');
                 themeIcon.className = 'fas fa-moon';
                 localStorage.setItem('theme', 'light');
             } else {
