@@ -10,11 +10,62 @@
     <!-- Basic fallback styles if external CSS fails -->
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f9fa; }
-        .debug-info { background: #28a745; color: white; padding: 10px; text-align: center; }
+        .debug-info { background: #28a745; color: white; padding: 8px; text-align: center; font-size: 0.9rem; }
         .navbar { background: #343a40; padding: 10px 0; }
         .navbar a { color: white; text-decoration: none; margin: 0 10px; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .hero-section { background: white; padding: 40px 20px; margin: 20px 0; border-radius: 8px; }
+        
+        /* Enhanced Theme Toggle Styles */
+        .theme-toggle {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            z-index: 1050;
+            background: var(--card-bg, #ffffff);
+            border: 3px solid var(--border-color, #007bff);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 123, 255, 0.3);
+            transition: all 0.3s ease;
+            animation: themeButtonPulse 3s ease-in-out infinite alternate;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(0, 123, 255, 0.5);
+        }
+        
+        .theme-toggle i {
+            font-size: 1.4rem;
+            color: var(--border-color, #007bff);
+            transition: all 0.3s ease;
+        }
+        
+        @keyframes themeButtonPulse {
+            0% { box-shadow: 0 4px 20px rgba(0, 123, 255, 0.3); }
+            100% { box-shadow: 0 6px 25px rgba(0, 123, 255, 0.5); }
+        }
+        
+        /* Dark theme adjustments */
+        [data-theme="dark"] .theme-toggle {
+            background: #2d2d2d;
+            border-color: #dc3545;
+            box-shadow: 0 4px 20px rgba(220, 53, 69, 0.3);
+        }
+        
+        [data-theme="dark"] .theme-toggle i {
+            color: #dc3545;
+        }
+        
+        [data-theme="dark"] .theme-toggle:hover {
+            box-shadow: 0 6px 30px rgba(220, 53, 69, 0.5);
+        }
     </style>
     
     <!-- External CSS -->
@@ -32,9 +83,9 @@
 </head>
 
 <body data-theme="light">
-    <!-- Debug indicator -->
+    <!-- Debug indicator - Smaller and positioned to not interfere -->
     <div class="debug-info">
-        ? Site.Master is loading - <%= DateTime.Now.ToString("HH:mm:ss") %>
+        ? Portfolio Loading Successfully - <%= DateTime.Now.ToString("HH:mm:ss") %> | <a href="Test.aspx" style="color: white; text-decoration: underline;">Diagnostics</a>
     </div>
     
     <form id="form1" runat="server">
@@ -47,9 +98,8 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <!-- Theme Toggle Button -->
-        <div class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode" 
-             style="position: fixed; top: 20px; right: 20px; z-index: 1000; background: #007bff; color: white; padding: 10px; border-radius: 50%; cursor: pointer;">
+        <!-- Enhanced Theme Toggle Button -->
+        <div class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
             <i class="fas fa-moon" id="theme-icon"></i>
         </div>
 
@@ -100,13 +150,28 @@
                                 <i class="fas fa-bug me-1"></i>Test
                             </a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                               data-bs-toggle="dropdown" aria-expanded="false" style="color: white !important;">
+                                <i class="fas fa-cog me-1"></i>Settings
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="toggleTheme(); return false;">
+                                    <i class="fas fa-adjust me-2"></i>Toggle Theme
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="Test.aspx">
+                                    <i class="fas fa-diagnostics me-2"></i>Diagnostics
+                                </a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
         <!-- Main Content -->
-        <main style="padding-top: 120px;">
+        <main style="padding-top: 100px;">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </main>
@@ -159,21 +224,39 @@
         </asp:ContentPlaceHolder>
     </form>
 
-    <!-- Theme Toggle Script -->
+    <!-- Enhanced Theme Toggle Script -->
     <script>
-        // Theme Management with proper initialization
+        // Theme Management with enhanced functionality
         function toggleTheme() {
             const body = document.body;
             const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme');
             
-            if (body.getAttribute('data-theme') === 'dark') {
+            console.log('Toggling theme. Current theme:', currentTheme);
+            
+            if (currentTheme === 'dark') {
                 body.setAttribute('data-theme', 'light');
-                themeIcon.className = 'fas fa-moon';
+                if (themeIcon) {
+                    themeIcon.className = 'fas fa-moon';
+                }
                 localStorage.setItem('theme', 'light');
+                console.log('Switched to light theme');
             } else {
                 body.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fas fa-sun';
+                if (themeIcon) {
+                    themeIcon.className = 'fas fa-sun';
+                }
                 localStorage.setItem('theme', 'dark');
+                console.log('Switched to dark theme');
+            }
+            
+            // Visual feedback
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (themeToggle) {
+                themeToggle.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    themeToggle.style.transform = 'scale(1)';
+                }, 200);
             }
         }
 
@@ -181,22 +264,41 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Site.Master JavaScript loaded successfully');
             
-            const savedTheme = localStorage.getItem('theme');
+            const savedTheme = localStorage.getItem('theme') || 'light';
             const themeIcon = document.getElementById('theme-icon');
             const body = document.body;
             
-            // Set initial theme based on saved preference or default to light
-            if (savedTheme === 'dark') {
-                body.setAttribute('data-theme', 'dark');
-                if (themeIcon) themeIcon.className = 'fas fa-sun';
-            } else {
-                body.setAttribute('data-theme', 'light');
-                if (themeIcon) themeIcon.className = 'fas fa-moon';
+            console.log('Loading saved theme:', savedTheme);
+            
+            // Set initial theme
+            body.setAttribute('data-theme', savedTheme);
+            
+            if (themeIcon) {
+                if (savedTheme === 'dark') {
+                    themeIcon.className = 'fas fa-sun';
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                }
+            }
+            
+            // Make theme toggle more visible
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (themeToggle) {
+                console.log('Theme toggle button found and configured');
+                
+                // Add extra visibility
+                themeToggle.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.15)';
+                });
+                
+                themeToggle.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
             }
 
             // Update active navigation link
             const currentPage = window.location.pathname.split('/').pop() || 'Default.aspx';
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)');
             
             navLinks.forEach(link => {
                 const href = link.getAttribute('href');
@@ -206,7 +308,19 @@
                     link.classList.remove('active');
                 }
             });
+            
+            console.log('Theme system initialized. Current theme:', savedTheme);
         });
+        
+        // Test function to verify theme toggle is working
+        function testThemeToggle() {
+            console.log('Testing theme toggle...');
+            toggleTheme();
+        }
+        
+        // Make functions globally available
+        window.toggleTheme = toggleTheme;
+        window.testThemeToggle = testThemeToggle;
     </script>
 </body>
 </html>

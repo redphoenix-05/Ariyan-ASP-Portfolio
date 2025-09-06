@@ -1,4 +1,4 @@
-/* Portfolio Website CSS - Light Theme with Blue & Green, Dark Theme with Red */
+/* Portfolio Website CSS - Light Theme with Blue & Green, Dark Theme */
 
 /* CSS Variables for Theme Management */
 :root {
@@ -81,33 +81,47 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Theme Toggle Button - Adjusted Position */
+/* Theme Toggle Button - Enhanced and More Visible */
 .theme-toggle {
     position: fixed;
-    top: 10px;
+    top: 60px;
     right: 20px;
     z-index: 1050;
     background: var(--card-bg);
-    border: 2px solid var(--border-color);
+    border: 3px solid var(--border-color);
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     box-shadow: var(--shadow-medium);
     transition: all 0.3s ease;
+    animation: themeButtonPulse 3s ease-in-out infinite alternate;
 }
 
 .theme-toggle:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
     box-shadow: var(--shadow-heavy);
 }
 
 .theme-toggle i {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: var(--border-color);
+    transition: all 0.3s ease;
+}
+
+/* Theme button animation */
+@keyframes themeButtonPulse {
+    0% { 
+        box-shadow: var(--shadow-medium);
+        border-width: 3px;
+    }
+    100% { 
+        box-shadow: var(--shadow-heavy);
+        border-width: 4px;
+    }
 }
 
 /* Navigation Styles - White in Light Mode */
