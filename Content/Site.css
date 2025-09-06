@@ -1,4 +1,4 @@
-/* Portfolio Website CSS - Dark Theme with Red Outlines, Light Theme with Blue & Green */
+/* Portfolio Website CSS - Light Theme with Blue & Green, Dark Theme with Red */
 
 /* CSS Variables for Theme Management */
 :root {
@@ -22,9 +22,10 @@
     --navbar-bg: #ffffff;
     --navbar-text: #212529;
     
-    /* Profile Picture Glow */
-    --profile-glow-color: #dc3545;
-    --profile-border-color: #ff6b7a;
+    /* Profile Picture Glow - Blue/Green in Light Mode */
+    --profile-glow-color: #007bff;
+    --profile-border-color: #28a745;
+    --profile-glow-secondary: #28a745;
     
     /* Shadows and Effects */
     --shadow-light: 0 2px 10px rgba(0, 123, 255, 0.1);
@@ -44,9 +45,10 @@
     --navbar-bg: #1a1a1a;
     --navbar-text: #ffffff;
     
-    /* Enhanced Red Glow for Dark Theme */
+    /* Profile Picture Glow - Red in Dark Theme */
     --profile-glow-color: #ff4757;
     --profile-border-color: #ff3742;
+    --profile-glow-secondary: #ff6b7a;
     
     /* Dark Theme Shadows with Red Glow */
     --shadow-light: 0 2px 10px rgba(220, 53, 69, 0.2);
@@ -184,7 +186,7 @@ body {
     overflow: hidden;
 }
 
-/* Profile Image Styles with Enhanced Circular Red Glow */
+/* Profile Image Styles with Theme-Responsive Glow */
 .profile-img {
     border-radius: 50% !important;
     max-width: 280px;
@@ -192,14 +194,14 @@ body {
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    /* Enhanced Glowing Red Border Effect */
+    /* Theme-Responsive Glowing Border Effect */
     border: 6px solid var(--profile-border-color);
     box-shadow: 
         0 0 20px var(--profile-glow-color),
         0 0 40px var(--profile-glow-color),
         0 0 60px var(--profile-glow-color),
-        0 0 80px var(--profile-glow-color),
-        0 0 100px var(--profile-glow-color);
+        0 0 80px var(--profile-glow-secondary),
+        0 0 100px var(--profile-glow-secondary);
     transition: all 0.4s ease;
     animation: profileGlow 3s ease-in-out infinite alternate;
     display: block;
@@ -212,20 +214,20 @@ body {
         0 0 30px var(--profile-glow-color),
         0 0 60px var(--profile-glow-color),
         0 0 90px var(--profile-glow-color),
-        0 0 120px var(--profile-glow-color),
-        0 0 150px var(--profile-glow-color);
+        0 0 120px var(--profile-glow-secondary),
+        0 0 150px var(--profile-glow-secondary);
     border-color: var(--profile-glow-color);
     border-width: 8px;
 }
 
-/* Enhanced Profile Glow Animation */
+/* Enhanced Profile Glow Animation - Theme Responsive */
 @keyframes profileGlow {
     0% {
         box-shadow: 
             0 0 20px var(--profile-glow-color),
             0 0 40px var(--profile-glow-color),
             0 0 60px var(--profile-glow-color),
-            0 0 80px var(--profile-glow-color);
+            0 0 80px var(--profile-glow-secondary);
         border-width: 6px;
     }
     100% {
@@ -233,8 +235,8 @@ body {
             0 0 25px var(--profile-glow-color),
             0 0 50px var(--profile-glow-color),
             0 0 75px var(--profile-glow-color),
-            0 0 100px var(--profile-glow-color),
-            0 0 125px var(--profile-glow-color);
+            0 0 100px var(--profile-glow-secondary),
+            0 0 125px var(--profile-glow-secondary);
         border-width: 7px;
     }
 }
@@ -244,12 +246,12 @@ body {
     max-width: 350px;
     width: 100%;
     height: auto;
-    /* Enhanced Glowing Red Border for About Page */
+    /* Enhanced Glowing Border for About Page */
     border: 6px solid var(--profile-border-color);
     box-shadow: 
         0 0 25px var(--profile-glow-color),
         0 0 50px var(--profile-glow-color),
-        0 0 75px var(--profile-glow-color),
+        0 0 75px var(--profile-glow-secondary),
         0 15px 40px rgba(0, 0, 0, 0.3);
     transition: all 0.4s ease;
     animation: profileGlowLarge 4s ease-in-out infinite alternate;
@@ -260,7 +262,7 @@ body {
     box-shadow: 
         0 0 35px var(--profile-glow-color),
         0 0 70px var(--profile-glow-color),
-        0 0 105px var(--profile-glow-color),
+        0 0 105px var(--profile-glow-secondary),
         0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
@@ -270,15 +272,15 @@ body {
         box-shadow: 
             0 0 25px var(--profile-glow-color),
             0 0 50px var(--profile-glow-color),
-            0 0 75px var(--profile-glow-color),
+            0 0 75px var(--profile-glow-secondary),
             0 15px 40px rgba(0, 0, 0, 0.3);
     }
     100% {
         box-shadow: 
             0 0 30px var(--profile-glow-color),
             0 0 60px var(--profile-glow-color),
-            0 0 90px var(--profile-glow-color),
-            0 0 120px var(--profile-glow-color),
+            0 0 90px var(--profile-glow-secondary),
+            0 0 120px var(--profile-glow-secondary),
             0 20px 50px rgba(0, 0, 0, 0.4);
     }
 }

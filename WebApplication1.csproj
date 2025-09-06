@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="About.aspx" />
+    <Content Include="Achievements.aspx" />
     <Content Include="AdminLogin.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Contact.aspx" />
@@ -79,13 +80,19 @@
     <Content Include="Images\IMAGE_PLACEHOLDER_README.txt" />
     <Content Include="Images\profile-placeholder.jpg" />
     <Content Include="portfolio-demo.html" />
+    <Content Include="Projects.aspx" />
     <Content Include="Scripts\Site.js" />
+    <Content Include="Skills.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Achievements.aspx.cs">
+      <DependentUpon>Achievements.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminLogin.aspx.cs">
@@ -106,8 +113,16 @@
     </Compile>
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Projects.aspx.cs">
+      <DependentUpon>Projects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Skills.aspx.cs">
+      <DependentUpon>Skills.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Test.aspx.cs">
@@ -121,6 +136,7 @@
   <ItemGroup>
     <Content Include="LICENSE" />
     <Content Include="IMAGE_ORGANIZATION_GUIDE.md" />
+    <Content Include="DESIGN_IMPROVEMENTS_SUMMARY.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />
