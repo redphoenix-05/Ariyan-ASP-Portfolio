@@ -73,7 +73,7 @@
     <Content Include="AdminLogin.aspx" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Contact.aspx" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site_New.css" />
     <Content Include="Database\CreatePortfolioDatabase.sql" />
     <Content Include="Database\SetupDatabase.sql" />
     <Content Include="Default.aspx" />
@@ -167,6 +167,7 @@
     <Content Include="ERRORS_FIXED_SUMMARY.md" />
     <Content Include="GRADIENT_DESIGN_UPDATE.md" />
     <Content Include="BACKGROUND_FOOTER_FIXES.md" />
+    <Content Include="BLUE_TEAL_THEME_COMPLETE.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />
