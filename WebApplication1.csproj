@@ -165,6 +165,7 @@
     <Content Include="COMPLETE_PORTFOLIO_UPDATE.md" />
     <Content Include="COMPILATION_ERROR_FIX.md" />
     <Content Include="ERRORS_FIXED_SUMMARY.md" />
+    <Content Include="GRADIENT_DESIGN_UPDATE.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />
