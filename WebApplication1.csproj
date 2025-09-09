@@ -172,6 +172,8 @@
     <Content Include="PROFILE_UPDATE_STATUS.md" />
     <Content Include="PARSER_ERROR_FIX.md" />
     <Content Include="PORTFOLIO_NOT_LOADING_FIX.md" />
+    <Content Include="THEME_TOGGLE_RESTORED.md" />
+    <Content Include="Site_New.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
