@@ -168,6 +168,7 @@
     <Content Include="GRADIENT_DESIGN_UPDATE.md" />
     <Content Include="BACKGROUND_FOOTER_FIXES.md" />
     <Content Include="BLUE_TEAL_THEME_COMPLETE.md" />
+    <Content Include="BLUE_TEAL_COMPLETE.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />
@@ -184,7 +185,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="WEB_CONFIG_ERROR_FIXED.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
