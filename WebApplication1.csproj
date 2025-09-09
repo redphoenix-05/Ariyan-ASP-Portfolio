@@ -166,6 +166,7 @@
     <Content Include="COMPILATION_ERROR_FIX.md" />
     <Content Include="ERRORS_FIXED_SUMMARY.md" />
     <Content Include="GRADIENT_DESIGN_UPDATE.md" />
+    <Content Include="BACKGROUND_FOOTER_FIXES.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />
