@@ -270,19 +270,25 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="py-5 bg-primary text-white">
-        <div class="container text-center">
-            <h2 class="h1 mb-4">Ready to Build Your Next App?</h2>
-            <p class="lead mb-4">Let's collaborate and bring your mobile or web application ideas to life with cutting-edge technology and machine learning!</p>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="d-flex flex-wrap justify-content-center gap-3">
-                        <a href="Contact.aspx" class="btn btn-light btn-lg btn-custom">
-                            <i class="fas fa-paper-plane me-2"></i>Start a Project
-                        </a>
-                        <a href="About.aspx" class="btn btn-outline-light btn-lg btn-custom">
-                            <i class="fas fa-user me-2"></i>Learn More About Me
-                        </a>
+    <section class="py-5 cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cta-content text-center">
+                        <h2 class="h1 mb-4">Ready to Build Your Next App?</h2>
+                        <p class="lead mb-4">Let's collaborate and bring your mobile or web application ideas to life with cutting-edge technology and machine learning!</p>
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="d-flex flex-wrap justify-content-center gap-3">
+                                    <a href="Contact.aspx" class="btn btn-hero btn-lg btn-custom">
+                                        <i class="fas fa-paper-plane me-2"></i>Start a Project
+                                    </a>
+                                    <a href="About.aspx" class="btn btn-hero-outline btn-lg btn-custom">
+                                        <i class="fas fa-user me-2"></i>Learn More About Me
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
