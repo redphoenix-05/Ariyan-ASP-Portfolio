@@ -332,12 +332,48 @@ namespace WebApplication1
 
         private void ShowMessage(string message, string cssClass)
         {
-            litResults.Text = message;
-            if (!string.IsNullOrEmpty(cssClass))
+            try
             {
-                pnlResults.CssClass = cssClass;
+                // Try to access the controls first
+                var lit = (System.Web.UI.WebControls.Literal)FindControl("litResults");
+                var pnl = (System.Web.UI.WebControls.Panel)FindControl("pnlResults");
+                
+                if (lit != null && pnl != null)
+                {
+                    lit.Text = message;
+                    if (!string.IsNullOrEmpty(cssClass))
+                    {
+                        pnl.CssClass = cssClass;
+                    }
+                    pnl.Visible = true;
+                }
+                else
+                {
+                    // Fallback to JavaScript if controls are not found
+                    string script = $@"
+                        document.addEventListener('DOMContentLoaded', function() {{
+                            const testResults = document.getElementById('testResults');
+                            if (testResults) {{
+                                testResults.innerHTML = `{message.Replace("`", "\\`").Replace("'", "\\'")}`;
+                            }}
+                        }});";
+                    
+                    ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", script, true);
+                }
             }
-            pnlResults.Visible = true;
+            catch
+            {
+                // Ultimate fallback to JavaScript
+                string script = $@"
+                    document.addEventListener('DOMContentLoaded', function() {{
+                        const testResults = document.getElementById('testResults');
+                        if (testResults) {{
+                            testResults.innerHTML = `{message.Replace("`", "\\`").Replace("'", "\\'")}`;
+                        }}
+                    }});";
+                
+                ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", script, true);
+            }
         }
     }
 }

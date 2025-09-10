@@ -222,6 +222,7 @@
     <Content Include="Site_Working.Master" />
     <Content Include="QUICK_COMPILATION_FIX.md" />
     <Content Include="PROJECT_CLEANUP_STATUS.md" />
+    <Content Include="PROJECT_STATUS_COMPLETE.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
