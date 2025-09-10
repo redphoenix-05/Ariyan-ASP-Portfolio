@@ -70,13 +70,16 @@
     <Content Include=".gitignore" />
     <Content Include="About.aspx" />
     <Content Include="Achievements.aspx" />
+    <Content Include="Admin.aspx" />
     <Content Include="AdminLogin.aspx" />
-    <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site_New.css" />
+    <Content Include="DatabaseTest.aspx" />
+    <Content Include="Database\CompleteSetup.sql" />
     <Content Include="Database\CreatePortfolioDatabase.sql" />
     <Content Include="Database\SetupDatabase.sql" />
     <Content Include="Default.aspx" />
+    <Content Include="Education.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\IMAGE_PLACEHOLDER_README.txt" />
     <Content Include="Images\profile-placeholder.jpg" />
@@ -93,9 +96,13 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="SimpleAdmin.aspx" />
+    <Content Include="SimpleTest.aspx" />
     <Content Include="Skills.aspx" />
+    <Content Include="Skills_New.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WorkingAdmin.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -109,12 +116,18 @@
       <DependentUpon>Achievements.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="AdminLogin.aspx.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
+    <Compile Include="AdminLoginNew.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminLogin_Working.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Contact.aspx.cs">
@@ -124,6 +137,11 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseHelper.cs" />
+    <Compile Include="DatabaseTest.aspx.cs">
+      <DependentUpon>DatabaseTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -131,13 +149,24 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Education.aspx.cs">
+      <DependentUpon>Education.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Projects.aspx.cs">
       <DependentUpon>Projects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SimpleAdmin.aspx.cs">
+      <DependentUpon>SimpleAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SimpleTest.aspx.cs">
+      <DependentUpon>SimpleTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.cs">
@@ -152,7 +181,6 @@
       <DependentUpon>Test.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Content Include="App_Code\DatabaseHelper.cs" />
     <Content Include="App_Code\EmailHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -160,15 +188,27 @@
     <Content Include="LICENSE" />
     <Content Include="IMAGE_ORGANIZATION_GUIDE.md" />
     <Content Include="DESIGN_IMPROVEMENTS_SUMMARY.md" />
-    <Content Include="COMPLETE_FIX_SUMMARY.md" />
     <Content Include="HERO_SECTION_DESIGN.md" />
     <Content Include="COMPLETE_PORTFOLIO_UPDATE.md" />
     <Content Include="COMPILATION_ERROR_FIX.md" />
     <Content Include="ERRORS_FIXED_SUMMARY.md" />
     <Content Include="GRADIENT_DESIGN_UPDATE.md" />
     <Content Include="BACKGROUND_FOOTER_FIXES.md" />
-    <Content Include="BLUE_TEAL_THEME_COMPLETE.md" />
     <Content Include="BLUE_TEAL_COMPLETE.md" />
+    <Content Include="Database\DYNAMIC_SETUP_GUIDE.md" />
+    <Content Include="EDUCATION_SKILLS_IMPLEMENTATION_SUMMARY.md" />
+    <Content Include="COMPLETE_FIX_OPTIMIZATION_SUMMARY.md" />
+    <Content Include="FINAL_VISIBILITY_FIX.md" />
+    <Content Include="ADMIN_PANEL_COMPLETE_SUMMARY.md" />
+    <Content Include="COMPILATION_ERRORS_FINAL_FIX.md" />
+    <Content Include="FINAL_SOLUTION_DELETE_DUPLICATES.md" />
+    <Content Include="DUPLICATE_FILES_CLEANUP_FINAL.md" />
+    <Content Include="FINAL_COMPLETE_SOLUTION.md" />
+    <Content Include="FINAL_COMPLETE_SOLUTION_READY.md" />
+    <Content Include="NEW_ADMIN_SYSTEM_COMPLETE.md" />
+    <Content Include="ADMIN_SYSTEM_READY.md" />
+    <Content Include="FINAL_SOLUTION_STATUS.md" />
+    <Content Include="DATABASE_SETUP_GUIDE.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <Content Include="README.md" />
@@ -179,12 +219,19 @@
     <Content Include="THEME_TOGGLE_RESTORED.md" />
     <Content Include="Site_New.Master" />
     <Content Include="PORTFOLIO_SIMPLIFIED.md" />
+    <Content Include="Site_Working.Master" />
+    <Content Include="QUICK_COMPILATION_FIX.md" />
+    <Content Include="PROJECT_CLEANUP_STATUS.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="WEBSITE_VISIBILITY_FIX_COMPLETE.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Admin\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

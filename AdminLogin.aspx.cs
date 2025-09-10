@@ -7,7 +7,21 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Basic page load
+            // Redirect to the working simple admin
+            Response.Redirect("SimpleAdmin.aspx");
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            // Redirect to simple admin
+            Response.Redirect("SimpleAdmin.aspx");
+        }
+
+        private void ShowMessage(string message, string cssClass)
+        {
+            // Simple implementation without control dependencies
+            ClientScript.RegisterStartupScript(this.GetType(), "showMessage", 
+                $"alert('{message.Replace("'", "\\'")}');", true);
         }
     }
 }

@@ -64,7 +64,31 @@
         </div>
     </section>
 
-    <!-- Certifications Section -->
+    <!-- Achievements Section - Dynamic from Database -->
+    <section class="py-5 services-section">
+        <div class="container">
+            <h2 class="section-title">Awards & Achievements</h2>
+            <div class="achievements-container">
+                <div class="row">
+                    <!-- Dynamic achievements will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section - Dynamic from Database -->
+    <section class="py-5 skills-section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-container">
+                <div class="row">
+                    <!-- Dynamic education will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Static Certifications Section -->
     <section class="py-5 skills-section">
         <div class="container">
             <h2 class="section-title">Professional Certifications</h2>
@@ -261,110 +285,6 @@
                                     <i class="fas fa-external-link-alt me-1"></i>Verify
                                 </a>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section class="py-5 services-section">
-        <div class="container">
-            <h2 class="section-title">Awards & Achievements</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-card achievement-card">
-                        <div class="service-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h5>Best Mobile App Developer</h5>
-                        <p class="text-muted">University Tech Competition 2023</p>
-                        <p>Awarded for developing an innovative mobile application with outstanding user experience and technical implementation.</p>
-                        <div class="achievement-date">
-                            <small class="text-muted">
-                                <i class="fas fa-calendar me-1"></i>March 2023
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-card achievement-card">
-                        <div class="service-icon">
-                            <i class="fas fa-medal"></i>
-                        </div>
-                        <h5>Dean's List Honor Roll</h5>
-                        <p class="text-muted">Academic Excellence 2022-2023</p>
-                        <p>Recognized for maintaining exceptional academic performance throughout the academic year with GPA above 3.8.</p>
-                        <div class="achievement-date">
-                            <small class="text-muted">
-                                <i class="fas fa-calendar me-1"></i>May 2023
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-card achievement-card">
-                        <div class="service-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h5>Hackathon Winner</h5>
-                        <p class="text-muted">Regional Tech Hackathon 2023</p>
-                        <p>First place winner for developing a real-time collaborative platform within 48 hours with innovative features.</p>
-                        <div class="achievement-date">
-                            <small class="text-muted">
-                                <i class="fas fa-calendar me-1"></i>October 2023
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-card achievement-card">
-                        <div class="service-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h5>Student Developer Program</h5>
-                        <p class="text-muted">Google Developer Student Clubs</p>
-                        <p>Selected as a core team member and mentor for junior developers in mobile and web development technologies.</p>
-                        <div class="achievement-date">
-                            <small class="text-muted">
-                                <i class="fas fa-calendar me-1"></i>September 2022
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-card achievement-card">
-                        <div class="service-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h5>Open Source Contributor</h5>
-                        <p class="text-muted">GitHub Recognition 2023</p>
-                        <p>Recognized for significant contributions to open source projects with over 100+ pull requests merged.</p>
-                        <div class="achievement-date">
-                            <small class="text-muted">
-                                <i class="fas fa-calendar me-1"></i>December 2023
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-card achievement-card">
-                        <div class="service-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h5>Tech Community Leader</h5>
-                        <p class="text-muted">Local Developer Community</p>
-                        <p>Led workshops and mentoring sessions for aspiring developers, helping 50+ students learn programming.</p>
-                        <div class="achievement-date">
-                            <small class="text-muted">
-                                <i class="fas fa-calendar me-1"></i>Ongoing
-                            </small>
                         </div>
                     </div>
                 </div>

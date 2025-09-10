@@ -51,6 +51,42 @@
                                     <br />Button clicked at: <asp:Literal ID="litTime" runat="server" />
                                 </asp:Panel>
                             </div>
+                            
+                            <div class="row mt-5">
+                                <div class="col-md-6">
+                                    <h5>Public Pages</h5>
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><a href="Default.aspx" target="_blank">Homepage</a></li>
+                                        <li class="list-group-item"><a href="Skills.aspx" target="_blank">Skills</a></li>
+                                        <li class="list-group-item"><a href="Projects.aspx" target="_blank">Projects</a></li>
+                                        <li class="list-group-item"><a href="Education.aspx" target="_blank">Education</a></li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <h5>Admin System</h5>
+                                    <div class="alert alert-warning">
+                                        <strong>New Admin Panel Available!</strong>
+                                        <p>Complete CRUD operations for Skills, Projects, and Education management.</p>
+                                        <a href="Admin.aspx" class="btn btn-primary" target="_blank">
+                                            <i class="fas fa-cog"></i> Access Admin
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="card bg-light">
+                                        <div class="card-body text-center">
+                                            <h6 class="card-title">Admin Login</h6>
+                                            <p class="card-text">
+                                                <strong>Username:</strong> admin<br />
+                                                <strong>Password:</strong> 2107045
+                                            </p>
+                                            <a href="Admin.aspx" class="btn btn-primary" target="_blank">
+                                                <i class="fas fa-sign-in-alt"></i> Login to Admin
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer text-muted">
                             <small>Portfolio project by Ariyan Rahman - Built with ASP.NET Web Forms</small>

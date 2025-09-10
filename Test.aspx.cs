@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
@@ -12,6 +13,7 @@ namespace WebApplication1
             if (!IsPostBack)
             {
                 LoadSystemInfo();
+                TestDatabaseConnection();
             }
         }
 
@@ -41,6 +43,50 @@ namespace WebApplication1
             {
                 // If controls don't exist, create a simple message
                 Response.Write($"<div style='color: red;'>Error loading system info: {ex.Message}</div>");
+            }
+        }
+
+        private void TestDatabaseConnection()
+        {
+            try
+            {
+                // Test Skills
+                DataTable skills = DatabaseHelper.GetSkills();
+                Response.Write($"<h2>Database Connection Test</h2>");
+                Response.Write($"<h3>Skills Test</h3>");
+                Response.Write($"<p>Skills found: {skills.Rows.Count}</p>");
+                
+                if (skills.Rows.Count > 0)
+                {
+                    Response.Write("<ul>");
+                    foreach (DataRow row in skills.Rows)
+                    {
+                        Response.Write($"<li>{row["SkillName"]} - Category: {row["SkillCategory"]} - Level: {row["ProficiencyLevel"]}%</li>");
+                    }
+                    Response.Write("</ul>");
+                }
+
+                // Test Education
+                DataTable education = DatabaseHelper.GetEducation();
+                Response.Write($"<h3>Education Test</h3>");
+                Response.Write($"<p>Education records found: {education.Rows.Count}</p>");
+                
+                if (education.Rows.Count > 0)
+                {
+                    Response.Write("<ul>");
+                    foreach (DataRow row in education.Rows)
+                    {
+                        Response.Write($"<li>{row["Degree"]} at {row["Institution"]} ({row["StartYear"]}-{(row["EndYear"] == DBNull.Value ? "Present" : row["EndYear"].ToString())})</li>");
+                    }
+                    Response.Write("</ul>");
+                }
+
+                Response.Write("<p style='color: green;'>Database connection successful!</p>");
+            }
+            catch (Exception ex)
+            {
+                Response.Write($"<p style='color: red;'>Database connection failed: {ex.Message}</p>");
+                Response.Write($"<p style='color: red;'>Stack trace: {ex.StackTrace}</p>");
             }
         }
 

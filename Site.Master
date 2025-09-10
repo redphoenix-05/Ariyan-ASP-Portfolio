@@ -7,12 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Ariyan Aftab Spandan | App Developer</title>
     
-    <!-- External CSS -->
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <!-- Google Fonts - Inter -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="~/Content/Site.css" rel="stylesheet" />
@@ -23,7 +22,7 @@
 
 <body class="gradient-background">
     <form id="form1" runat="server">
-        <!-- Script Manager for jQuery and validation -->
+        <!-- Script Manager -->
         <asp:ScriptManager ID="ScriptManager1" runat="server" 
                            EnablePartialRendering="true" 
                            ScriptMode="Auto">
@@ -52,6 +51,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="About.aspx">
                                 <i class="fas fa-user me-1"></i>About
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Education.aspx">
+                                <i class="fas fa-graduation-cap me-1"></i>Education
                             </a>
                         </li>
                         <li class="nav-item">
@@ -88,7 +92,7 @@
         <!-- Wave Divider -->
         <div class="wave-divider">
             <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" class="wave-bottom"></path>
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="currentColor"></path>
             </svg>
         </div>
 
@@ -120,10 +124,11 @@
                     <div class="col-lg-2 col-md-6 mb-4">
                         <h6 class="fw-bold mb-3" style="color: rgba(255, 255, 255, 0.9);">Quick Links</h6>
                         <ul class="list-unstyled">
-                            <li class="mb-2"><a href="Default.aspx" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;" onmouseover="this.style.color='#14B8A6'" onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'">Home</a></li>
-                            <li class="mb-2"><a href="About.aspx" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;" onmouseover="this.style.color='#14B8A6'" onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'">About</a></li>
-                            <li class="mb-2"><a href="Skills.aspx" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;" onmouseover="this.style.color='#14B8A6'" onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'">Skills</a></li>
-                            <li class="mb-2"><a href="Projects.aspx" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;" onmouseover="this.style.color='#14B8A6'" onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'">Projects</a></li>
+                            <li class="mb-2"><a href="Default.aspx" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Home</a></li>
+                            <li class="mb-2"><a href="About.aspx" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">About</a></li>
+                            <li class="mb-2"><a href="Education.aspx" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Education</a></li>
+                            <li class="mb-2"><a href="Skills.aspx" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Skills</a></li>
+                            <li class="mb-2"><a href="Projects.aspx" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Projects</a></li>
                         </ul>
                     </div>
                     
@@ -164,19 +169,16 @@
                 </div>
             </div>
         </footer>
-
-        <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/Scripts/Site.js"></script>
-        
-        <asp:ContentPlaceHolder ID="ScriptContent" runat="server">
-        </asp:ContentPlaceHolder>
     </form>
 
-    <!-- Enhanced Navigation Script -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Site.js"></script>
+    
+    <!-- Navigation Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Modern portfolio navigation loaded successfully');
+            console.log('Portfolio loading...');
             
             // Update active navigation link
             const currentPage = window.location.pathname.split('/').pop() || 'Default.aspx';
@@ -192,11 +194,9 @@
             });
             
             // Navbar scroll effect
-            let lastScrollTop = 0;
             const navbar = document.querySelector('.navbar');
-            
             window.addEventListener('scroll', function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
                 if (scrollTop > 100) {
                     navbar.style.background = 'rgba(255, 255, 255, 0.95)';
@@ -205,24 +205,13 @@
                     navbar.style.background = '#FFFFFF';
                     navbar.style.backdropFilter = 'none';
                 }
-                
-                lastScrollTop = scrollTop;
             });
             
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
+            console.log('Portfolio loaded successfully!');
         });
     </script>
+    
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server">
+    </asp:ContentPlaceHolder>
 </body>
 </html>
