@@ -72,6 +72,9 @@ namespace WebApplication1
                                 </div>
                             </div>",
                             cardColor, iconClass, skillName, badgeColor, category, proficiency, description, category.ToLower());
+                        
+                        // Debug: Log the category being added
+                        System.Diagnostics.Debug.WriteLine($"Adding skill: {skillName}, Category: {category}, Data-Category: {category.ToLower()}");
                     }
                     
                     // Inject skills into the page
@@ -79,8 +82,20 @@ namespace WebApplication1
                         document.addEventListener('DOMContentLoaded', function() {
                             const skillsContainer = document.querySelector('.skills-container .row');
                             if (skillsContainer) {
-                                skillsContainer.innerHTML = '" + skillsHtml.ToString().Replace("'", "\\'").Replace("\r\n", "") + @"';
+                                skillsContainer.innerHTML = '" + skillsHtml.ToString().Replace("'", "\\'").Replace("\r\n", "").Replace("\"", "\\\"") + @"';
                                 console.log('Skills loaded from database:', skillsContainer.children.length);
+                                
+                                // Initialize filter functionality after skills are loaded
+                                if (typeof initializeSkillFilters === 'function') {
+                                    initializeSkillFilters();
+                                }
+                                
+                                // Calculate stats after skills are loaded
+                                setTimeout(() => {
+                                    if (typeof calculateSkillsStats === 'function') {
+                                        calculateSkillsStats();
+                                    }
+                                }, 100);
                                 
                                 // Animate progress bars
                                 setTimeout(() => {

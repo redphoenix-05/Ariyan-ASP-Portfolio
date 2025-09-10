@@ -378,6 +378,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg admin-navbar">
             <div class="container-fluid">
@@ -472,58 +473,238 @@
 
             <!-- Management Section -->
             <div id="management">
-                <h2 class="mb-4" style="color: #1e293b; font-weight: 700;">Portfolio Management</h2>
-                <div class="management-grid">
-                    <div class="management-card fade-in-up">
-                        <h5><i class="fas fa-cogs"></i>Skills Management</h5>
-                        <p>Add, edit, and organize your technical skills. Manage proficiency levels and skill categories.</p>
-                        <div class="action-buttons">
-                            <a href="Skills.aspx" class="btn-custom" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>Manage Skills
-                            </a>
-                            <a href="Admin.aspx" class="btn-outline-custom">
-                                <i class="fas fa-plus"></i>Add New Skill
-                            </a>
+                <h2 class="mb-4" style="color: #1e293b; font-weight: 700;">Portfolio Management & CRUD Operations</h2>
+                
+                <!-- Skills CRUD Section -->
+                <div class="management-card fade-in-up">
+                    <h5><i class="fas fa-cogs"></i>Skills CRUD Operations</h5>
+                    <p>Add, edit, delete, and manage your technical skills with real-time database operations.</p>
+                    
+                    <!-- Add New Skill Form -->
+                    <div class="mb-4">
+                        <h6>Add New Skill</h6>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txtSkillName" runat="server" CssClass="form-control" placeholder="Skill Name" />
+                            </div>
+                            <div class="col-md-2">
+                                <asp:DropDownList ID="ddlSkillCategory" runat="server" CssClass="form-select">
+                                    <asp:ListItem Text="Select Category" Value="" />
+                                    <asp:ListItem Text="Programming" Value="Programming" />
+                                    <asp:ListItem Text="Framework" Value="Framework" />
+                                    <asp:ListItem Text="Database" Value="Database" />
+                                    <asp:ListItem Text="Mobile" Value="Mobile" />
+                                    <asp:ListItem Text="Technology" Value="Technology" />
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-2">
+                                <asp:TextBox ID="txtProficiency" runat="server" CssClass="form-control" placeholder="Proficiency (1-100)" TextMode="Number" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txtIconClass" runat="server" CssClass="form-control" placeholder="Icon Class (e.g., fas fa-code)" />
+                            </div>
+                            <div class="col-md-2">
+                                <asp:Button ID="btnAddSkill" runat="server" CssClass="btn-custom w-100" Text="Add Skill" OnClick="btnAddSkill_Click" />
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-12">
+                                <asp:TextBox ID="txtSkillDescription" runat="server" CssClass="form-control" placeholder="Skill Description" TextMode="MultiLine" Rows="2" />
+                            </div>
                         </div>
                     </div>
 
-                    <div class="management-card fade-in-up">
-                        <h5><i class="fas fa-folder-open"></i>Projects Showcase</h5>
-                        <p>Display your projects with descriptions, tech stacks, and demo links. Feature your best work.</p>
-                        <div class="action-buttons">
-                            <a href="Projects.aspx" class="btn-custom" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>View Projects
-                            </a>
-                            <a href="Admin.aspx" class="btn-outline-custom">
-                                <i class="fas fa-plus"></i>Add Project
-                            </a>
+                    <!-- Skills List -->
+                    <div class="mb-4">
+                        <h6>Current Skills</h6>
+                        <asp:UpdatePanel ID="UpdatePanelSkills" runat="server">
+                            <ContentTemplate>
+                                <asp:GridView ID="gvSkills" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" 
+                                    DataKeyNames="SkillId" OnRowCommand="gvSkills_RowCommand" OnRowEditing="gvSkills_RowEditing" 
+                                    OnRowCancelingEdit="gvSkills_RowCancelingEdit" OnRowUpdating="gvSkills_RowUpdating" OnRowDeleting="gvSkills_RowDeleting">
+                                    <Columns>
+                                        <asp:BoundField DataField="SkillName" HeaderText="Skill Name" />
+                                        <asp:BoundField DataField="SkillCategory" HeaderText="Category" />
+                                        <asp:BoundField DataField="ProficiencyLevel" HeaderText="Proficiency %" />
+                                        <asp:BoundField DataField="IconClass" HeaderText="Icon" />
+                                        <asp:TemplateField HeaderText="Actions">
+                                            <ItemTemplate>
+                                                <asp:Button runat="server" CommandName="Edit" CssClass="btn btn-sm btn-outline-custom me-1" Text="Edit" />
+                                                <asp:Button runat="server" CommandName="Delete" CommandArgument='<%# Eval("SkillId") %>' 
+                                                    CssClass="btn btn-sm btn-outline-danger" Text="Delete" 
+                                                    OnClientClick="return confirm('Are you sure you want to delete this skill?');" />
+                                            </ItemTemplate>
+                                            <EditItemTemplate>
+                                                <asp:Button runat="server" CommandName="Update" CssClass="btn btn-sm btn-outline-custom me-1" Text="Update" />
+                                                <asp:Button runat="server" CommandName="Cancel" CssClass="btn btn-sm btn-outline-secondary" Text="Cancel" />
+                                            </EditItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <EmptyDataTemplate>
+                                        <div class="text-center py-3 text-muted">
+                                            <i class="fas fa-info-circle me-2"></i>No skills found. Add your first skill above.
+                                        </div>
+                                    </EmptyDataTemplate>
+                                </asp:GridView>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="Skills.aspx" class="btn-custom" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>View Skills Page
+                        </a>
+                        <asp:Button ID="btnRefreshSkills" runat="server" CssClass="btn-outline-custom" Text="Refresh Skills" OnClick="btnRefreshSkills_Click" />
+                    </div>
+                </div>
+
+                <!-- Projects CRUD Section -->
+                <div class="management-card fade-in-up">
+                    <h5><i class="fas fa-folder-open"></i>Projects CRUD Operations</h5>
+                    <p>Manage your project portfolio with full CRUD capabilities.</p>
+                    
+                    <!-- Add New Project Form -->
+                    <div class="mb-4">
+                        <h6>Add New Project</h6>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtProjectTitle" runat="server" CssClass="form-control" placeholder="Project Title" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-select">
+                                    <asp:ListItem Text="Select Type" Value="" />
+                                    <asp:ListItem Text="Web Application" Value="Web" />
+                                    <asp:ListItem Text="Mobile App" Value="Mobile" />
+                                    <asp:ListItem Text="Desktop App" Value="Desktop" />
+                                    <asp:ListItem Text="API" Value="API" />
+                                    <asp:ListItem Text="Machine Learning" Value="ML" />
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txtTechStack" runat="server" CssClass="form-control" placeholder="Tech Stack" />
+                            </div>
+                            <div class="col-md-2">
+                                <asp:Button ID="btnAddProject" runat="server" CssClass="btn-custom w-100" Text="Add Project" OnClick="btnAddProject_Click" />
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtProjectDescription" runat="server" CssClass="form-control" placeholder="Project Description" TextMode="MultiLine" Rows="2" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txtGitHubLink" runat="server" CssClass="form-control" placeholder="GitHub Link" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txtDemoLink" runat="server" CssClass="form-control" placeholder="Demo Link" />
+                            </div>
                         </div>
                     </div>
 
-                    <div class="management-card fade-in-up">
-                        <h5><i class="fas fa-trophy"></i>Achievements</h5>
-                        <p>Track and showcase your certifications, awards, and professional accomplishments.</p>
-                        <div class="action-buttons">
-                            <a href="Achievements.aspx" class="btn-custom" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>View Achievements
-                            </a>
-                            <a href="Admin.aspx" class="btn-outline-custom">
-                                <i class="fas fa-plus"></i>Add Achievement
-                            </a>
+                    <!-- Projects List -->
+                    <div class="mb-4">
+                        <h6>Current Projects</h6>
+                        <asp:UpdatePanel ID="UpdatePanelProjects" runat="server">
+                            <ContentTemplate>
+                                <asp:GridView ID="gvProjects" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" 
+                                    DataKeyNames="ProjectId" OnRowDeleting="gvProjects_RowDeleting">
+                                    <Columns>
+                                        <asp:BoundField DataField="Title" HeaderText="Title" />
+                                        <asp:BoundField DataField="ProjectType" HeaderText="Type" />
+                                        <asp:BoundField DataField="TechStack" HeaderText="Tech Stack" />
+                                        <asp:BoundField DataField="Status" HeaderText="Status" />
+                                        <asp:TemplateField HeaderText="Actions">
+                                            <ItemTemplate>
+                                                <asp:Button runat="server" CommandName="Delete" CommandArgument='<%# Eval("ProjectId") %>' 
+                                                    CssClass="btn btn-sm btn-outline-danger" Text="Delete" 
+                                                    OnClientClick="return confirm('Are you sure you want to delete this project?');" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <EmptyDataTemplate>
+                                        <div class="text-center py-3 text-muted">
+                                            <i class="fas fa-info-circle me-2"></i>No projects found. Add your first project above.
+                                        </div>
+                                    </EmptyDataTemplate>
+                                </asp:GridView>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="Projects.aspx" class="btn-custom" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>View Projects Page
+                        </a>
+                        <asp:Button ID="btnRefreshProjects" runat="server" CssClass="btn-outline-custom" Text="Refresh Projects" OnClick="btnRefreshProjects_Click" />
+                    </div>
+                </div>
+
+                <!-- Achievements CRUD Section -->
+                <div class="management-card fade-in-up">
+                    <h5><i class="fas fa-trophy"></i>Achievements CRUD Operations</h5>
+                    <p>Track and manage your achievements and certifications.</p>
+                    
+                    <!-- Add New Achievement Form -->
+                    <div class="mb-4">
+                        <h6>Add New Achievement</h6>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <asp:TextBox ID="txtAchievementTitle" runat="server" CssClass="form-control" placeholder="Achievement Title" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txtOrganization" runat="server" CssClass="form-control" placeholder="Organization" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:TextBox ID="txtAchievementDate" runat="server" CssClass="form-control" placeholder="Achievement Date" TextMode="Date" />
+                            </div>
+                            <div class="col-md-2">
+                                <asp:Button ID="btnAddAchievement" runat="server" CssClass="btn-custom w-100" Text="Add Achievement" OnClick="btnAddAchievement_Click" />
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtAchievementDescription" runat="server" CssClass="form-control" placeholder="Achievement Description" TextMode="MultiLine" Rows="2" />
+                            </div>
+                            <div class="col-md-6">
+                                <asp:TextBox ID="txtAchievementCategory" runat="server" CssClass="form-control" placeholder="Category (e.g., Certification, Award)" />
+                            </div>
                         </div>
                     </div>
 
-                    <div class="management-card fade-in-up">
-                        <h5><i class="fas fa-envelope"></i>Contact Messages</h5>
-                        <p>Manage inquiries and contact form submissions. Respond to potential clients and collaborators.</p>
-                        <div class="action-buttons">
-                            <a href="Contact.aspx" class="btn-custom" target="_blank">
-                                <i class="fas fa-external-link-alt"></i>Contact Form
-                            </a>
-                            <a href="Admin.aspx" class="btn-outline-custom">
-                                <i class="fas fa-eye"></i>View Messages
-                            </a>
-                        </div>
+                    <!-- Achievements List -->
+                    <div class="mb-4">
+                        <h6>Current Achievements</h6>
+                        <asp:UpdatePanel ID="UpdatePanelAchievements" runat="server">
+                            <ContentTemplate>
+                                <asp:GridView ID="gvAchievements" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" 
+                                    DataKeyNames="AchievementId" OnRowDeleting="gvAchievements_RowDeleting">
+                                    <Columns>
+                                        <asp:BoundField DataField="Title" HeaderText="Title" />
+                                        <asp:BoundField DataField="Organization" HeaderText="Organization" />
+                                        <asp:BoundField DataField="Category" HeaderText="Category" />
+                                        <asp:BoundField DataField="AchievementDate" HeaderText="Date" DataFormatString="{0:yyyy-MM-dd}" />
+                                        <asp:TemplateField HeaderText="Actions">
+                                            <ItemTemplate>
+                                                <asp:Button runat="server" CommandName="Delete" CommandArgument='<%# Eval("AchievementId") %>' 
+                                                    CssClass="btn btn-sm btn-outline-danger" Text="Delete" 
+                                                    OnClientClick="return confirm('Are you sure you want to delete this achievement?');" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <EmptyDataTemplate>
+                                        <div class="text-center py-3 text-muted">
+                                            <i class="fas fa-info-circle me-2"></i>No achievements found. Add your first achievement above.
+                                        </div>
+                                    </EmptyDataTemplate>
+                                </asp:GridView>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+
+                    <div class="action-buttons">
+                        <a href="Achievements.aspx" class="btn-custom" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>View Achievements Page
+                        </a>
+                        <asp:Button ID="btnRefreshAchievements" runat="server" CssClass="btn-outline-custom" Text="Refresh Achievements" OnClick="btnRefreshAchievements_Click" />
                     </div>
                 </div>
             </div>
@@ -584,12 +765,6 @@
                 <div class="action-buttons">
                     <a href="Default.aspx" class="btn-custom" target="_blank">
                         <i class="fas fa-home"></i>Portfolio Home
-                    </a>
-                    <a href="DatabaseTest.aspx" class="btn-outline-custom" target="_blank">
-                        <i class="fas fa-database"></i>Database Test
-                    </a>
-                    <a href="Admin.aspx" class="btn-outline-custom">
-                        <i class="fas fa-cog"></i>Full Admin Panel
                     </a>
                     <button class="btn-outline-custom" onclick="location.reload()">
                         <i class="fas fa-sync"></i>Refresh Dashboard

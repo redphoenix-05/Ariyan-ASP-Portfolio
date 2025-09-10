@@ -70,15 +70,9 @@
     <Content Include=".gitignore" />
     <Content Include="About.aspx" />
     <Content Include="Achievements.aspx" />
-    <Content Include="Admin.aspx" />
-    <Content Include="AdminDebug.aspx" />
     <Content Include="AdminLogin.aspx" />
     <Content Include="AdminSimple.aspx" />
-    <Content Include="AdminTest.aspx" />
-    <Content Include="AdminWorking.aspx" />
     <Content Include="Contact.aspx" />
-    <Content Include="Content\Site_New.css" />
-    <Content Include="DatabaseTest.aspx" />
     <Content Include="Database\CompleteSetup.sql" />
     <Content Include="Database\CreatePortfolioDatabase.sql" />
     <Content Include="Database\SetupDatabase.sql" />
@@ -87,9 +81,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\IMAGE_PLACEHOLDER_README.txt" />
     <Content Include="Images\profile-placeholder.jpg" />
-    <Content Include="portfolio-demo.html" />
     <Content Include="Projects.aspx" />
-    <Content Include="RedirectTest.aspx" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\Site.js" />
@@ -102,13 +94,8 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="SimpleAdmin.aspx" />
-    <Content Include="SimpleAdminWorking.aspx" />
-    <Content Include="SimpleLogin.aspx" />
     <Content Include="Skills.aspx" />
-    <Content Include="SkillsTest.aspx" />
-    <Content Include="Test.aspx" />
     <Content Include="Web.config" />
-    <Content Include="WorkingAdmin.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -122,32 +109,12 @@
       <DependentUpon>Achievements.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin.aspx.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin.aspx.designer.cs">
-      <DependentUpon>Admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminDebug.aspx.cs">
-      <DependentUpon>AdminDebug.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminDebug.aspx.designer.cs">
-      <DependentUpon>AdminDebug.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AdminLogin.aspx.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminLogin.aspx.designer.cs">
       <DependentUpon>AdminLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminLoginNew.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminLogin_Working.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSimple.aspx.cs">
       <DependentUpon>AdminSimple.aspx</DependentUpon>
@@ -156,30 +123,12 @@
     <Compile Include="AdminSimple.aspx.designer.cs">
       <DependentUpon>AdminSimple.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminTest.aspx.cs">
-      <DependentUpon>AdminTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminTest.aspx.designer.cs">
-      <DependentUpon>AdminTest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminWorking.aspx.cs">
-      <DependentUpon>AdminWorking.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminWorking.aspx.designer.cs">
-      <DependentUpon>AdminWorking.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DatabaseTest.aspx.cs">
-      <DependentUpon>DatabaseTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -195,31 +144,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\EmailHelper.cs" />
     <Compile Include="Projects.aspx.cs">
       <DependentUpon>Projects.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RedirectTest.aspx.cs">
-      <DependentUpon>RedirectTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RedirectTest.aspx.designer.cs">
-      <DependentUpon>RedirectTest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SimpleAdminWorking.aspx.cs">
-      <DependentUpon>SimpleAdminWorking.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SimpleAdminWorking.aspx.designer.cs">
-      <DependentUpon>SimpleAdminWorking.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SimpleLogin.aspx.cs">
-      <DependentUpon>SimpleLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SimpleLogin.aspx.designer.cs">
-      <DependentUpon>SimpleLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -229,79 +156,27 @@
       <DependentUpon>Skills.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SkillsTest.aspx.cs">
-      <DependentUpon>SkillsTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WorkingAdmin.aspx.cs">
-      <DependentUpon>WorkingAdmin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Content Include="App_Code\EmailHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE" />
-    <Content Include="IMAGE_ORGANIZATION_GUIDE.md" />
-    <Content Include="DESIGN_IMPROVEMENTS_SUMMARY.md" />
-    <Content Include="HERO_SECTION_DESIGN.md" />
-    <Content Include="COMPLETE_PORTFOLIO_UPDATE.md" />
-    <Content Include="COMPILATION_ERROR_FIX.md" />
-    <Content Include="ERRORS_FIXED_SUMMARY.md" />
-    <Content Include="GRADIENT_DESIGN_UPDATE.md" />
-    <Content Include="BACKGROUND_FOOTER_FIXES.md" />
-    <Content Include="BLUE_TEAL_COMPLETE.md" />
     <Content Include="Database\DYNAMIC_SETUP_GUIDE.md" />
-    <Content Include="EDUCATION_SKILLS_IMPLEMENTATION_SUMMARY.md" />
-    <Content Include="COMPLETE_FIX_OPTIMIZATION_SUMMARY.md" />
-    <Content Include="FINAL_VISIBILITY_FIX.md" />
-    <Content Include="ADMIN_PANEL_COMPLETE_SUMMARY.md" />
-    <Content Include="COMPILATION_ERRORS_FINAL_FIX.md" />
-    <Content Include="FINAL_SOLUTION_DELETE_DUPLICATES.md" />
-    <Content Include="DUPLICATE_FILES_CLEANUP_FINAL.md" />
-    <Content Include="FINAL_COMPLETE_SOLUTION.md" />
-    <Content Include="FINAL_COMPLETE_SOLUTION_READY.md" />
-    <Content Include="NEW_ADMIN_SYSTEM_COMPLETE.md" />
-    <Content Include="ADMIN_SYSTEM_READY.md" />
-    <Content Include="FINAL_SOLUTION_STATUS.md" />
-    <Content Include="DATABASE_SETUP_GUIDE.md" />
-    <Content Include="DATABASE_FIXED_ADMIN_READY.md" />
-    <Content Include="ERRORS_FIXED_ADMIN_READY.md" />
-    <Content Include="COMPLETE_ADMIN_SYSTEM_READY.md" />
-    <Content Include="CONTACT_FORM_VALIDATION_UPDATED.md" />
-    <Content Include="CONTACT_SOCIAL_MEDIA_UPDATED.md" />
-    <Content Include="ADMIN_LOGIN_FIXED_COMPLETE.md" />
-    <Content Include="ALL_ERRORS_FIXED_SUCCESS.md" />
-    <Content Include="ADMIN_LOGIN_REDIRECT_FIXED.md" />
-    <Content Include="ADMIN_REDIRECT_COMPREHENSIVE_FIX.md" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
-    <Content Include="README.md" />
-    <Content Include="PROFILE_UPDATE_STATUS.md" />
-    <Content Include="PARSER_ERROR_FIX.md" />
-    <Content Include="PORTFOLIO_NOT_LOADING_FIX.md" />
-    <Content Include="THEME_TOGGLE_RESTORED.md" />
     <Content Include="Site_New.Master" />
-    <Content Include="PORTFOLIO_SIMPLIFIED.md" />
     <Content Include="Site_Working.Master" />
-    <Content Include="QUICK_COMPILATION_FIX.md" />
-    <Content Include="PROJECT_CLEANUP_STATUS.md" />
-    <Content Include="PROJECT_STATUS_COMPLETE.md" />
-    <Content Include="SKILLS_PAGE_FIXED.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="WEBSITE_VISIBILITY_FIX_COMPLETE.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
+    <Folder Include="Content\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

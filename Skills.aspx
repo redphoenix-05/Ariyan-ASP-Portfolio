@@ -221,20 +221,117 @@
 
 <asp:Content ID="ScriptContent" ContentPlaceHolderID="ScriptContent" runat="server">
     <script>
+        // Global variables to track skills
+        let skillsLoaded = false;
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // Calculate and display statistics
-            setTimeout(calculateSkillsStats, 1000);
-            
-            // Initialize filter functionality
-            initializeFilters();
+            // Wait for skills to be loaded before initializing filters
+            const checkSkillsLoaded = setInterval(() => {
+                const skillCards = document.querySelectorAll('[data-category]');
+                if (skillCards.length > 0) {
+                    skillsLoaded = true;
+                    clearInterval(checkSkillsLoaded);
+                    
+                    // Initialize everything after skills are loaded
+                    initializeSkillFilters();
+                    calculateSkillsStats();
+                    addSkillCardEffects();
+                }
+            }, 100);
         });
+
+        // This function will be called from the injected script after skills are loaded
+        function initializeSkillFilters() {
+            console.log('Initializing skill filters...');
+            
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            console.log('Found filter buttons:', filterButtons.length);
+            
+            filterButtons.forEach((button, index) => {
+                console.log(`Button ${index}:`, button.textContent, button.getAttribute('onclick'));
+                
+                // Remove existing event listeners to avoid duplicates
+                button.removeEventListener('click', handleFilterClick);
+                button.addEventListener('click', handleFilterClick);
+            });
+            
+            // Debug: List all skill containers and their categories
+            const skillContainers = document.querySelectorAll('[data-category]');
+            console.log('Found skill containers:', skillContainers.length);
+            skillContainers.forEach((container, index) => {
+                console.log(`Skill ${index}:`, container.getAttribute('data-category'));
+            });
+            
+            // Set up initial filter state
+            const activeButton = document.querySelector('.filter-btn.active');
+            if (activeButton) {
+                const initialCategory = activeButton.getAttribute('onclick').match(/filterSkills\('(.+)'\)/);
+                if (initialCategory) {
+                    console.log('Initial filter category:', initialCategory[1]);
+                    filterSkills(initialCategory[1]);
+                }
+            }
+        }
+
+        function handleFilterClick(event) {
+            event.preventDefault();
+            
+            // Update active button
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Get category from onclick attribute
+            const onclickAttr = event.target.getAttribute('onclick');
+            const categoryMatch = onclickAttr.match(/filterSkills\('(.+)'\)/);
+            if (categoryMatch) {
+                filterSkills(categoryMatch[1]);
+            }
+        }
+
+        function filterSkills(category) {
+            console.log('Filtering skills by category:', category);
+            
+            const skillContainers = document.querySelectorAll('[data-category]');
+            console.log('Found skill containers:', skillContainers.length);
+            
+            let visibleCount = 0;
+            
+            skillContainers.forEach(container => {
+                const containerCategory = container.getAttribute('data-category');
+                console.log('Container category:', containerCategory, 'Filter category:', category);
+                
+                if (category === 'all') {
+                    container.style.display = 'block';
+                    container.classList.remove('d-none');
+                    visibleCount++;
+                } else {
+                    if (containerCategory === category.toLowerCase()) {
+                        container.style.display = 'block';
+                        container.classList.remove('d-none');
+                        visibleCount++;
+                    } else {
+                        container.style.display = 'none';
+                        container.classList.add('d-none');
+                    }
+                }
+            });
+            
+            console.log('Visible skills after filtering:', visibleCount);
+            
+            // Recalculate stats for visible cards
+            setTimeout(() => {
+                calculateVisibleSkillsStats();
+            }, 100);
+        }
 
         function calculateSkillsStats() {
             const skillCards = document.querySelectorAll('.skill-card');
             const totalSkills = skillCards.length;
             
+            console.log('Calculating stats for', totalSkills, 'skills');
+            
             if (totalSkills > 0) {
-                // Calculate average proficiency
                 let totalProficiency = 0;
                 let expertCount = 0;
                 const categories = new Set();
@@ -263,13 +360,49 @@
             }
         }
 
+        function calculateVisibleSkillsStats() {
+            const visibleContainers = Array.from(document.querySelectorAll('[data-category]'))
+                .filter(container => container.style.display !== 'none' && !container.classList.contains('d-none'));
+            
+            const totalVisible = visibleContainers.length;
+            console.log('Calculating stats for', totalVisible, 'visible skills');
+            
+            if (totalVisible > 0) {
+                let totalProficiency = 0;
+                let expertCount = 0;
+                const categories = new Set();
+                
+                visibleContainers.forEach(container => {
+                    const progressBar = container.querySelector('.progress-bar');
+                    const categoryBadge = container.querySelector('.badge');
+                    
+                    if (progressBar) {
+                        const proficiency = parseInt(progressBar.getAttribute('aria-valuenow') || '0');
+                        totalProficiency += proficiency;
+                        if (proficiency >= 80) expertCount++;
+                    }
+                    
+                    if (categoryBadge) {
+                        categories.add(categoryBadge.textContent.trim());
+                    }
+                });
+                
+                const avgProficiency = Math.round(totalProficiency / totalVisible);
+                
+                // Update counters directly (no animation for filtering)
+                document.getElementById('totalSkills').textContent = totalVisible;
+                document.getElementById('avgProficiency').textContent = avgProficiency + '%';
+                document.getElementById('expertSkills').textContent = expertCount;
+                document.getElementById('categories').textContent = categories.size;
+            }
+        }
+
         function animateCounter(elementId, targetValue, suffix = '') {
             const element = document.getElementById(elementId);
             if (!element) return;
             
             const duration = 2000;
             const start = performance.now();
-            const initialValue = 0;
             
             function updateCounter(currentTime) {
                 const elapsed = currentTime - start;
@@ -288,73 +421,7 @@
             requestAnimationFrame(updateCounter);
         }
 
-        function initializeFilters() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-        }
-
-        function filterSkills(category) {
-            const skillCards = document.querySelectorAll('.skill-card');
-            
-            skillCards.forEach(card => {
-                const cardCategory = card.querySelector('.badge');
-                const cardContainer = card.closest('.col-lg-4, .col-md-6');
-                
-                if (!cardContainer) return;
-                
-                if (category === 'all') {
-                    cardContainer.style.display = 'block';
-                } else {
-                    const cardCategoryText = cardCategory ? cardCategory.textContent.toLowerCase().trim() : '';
-                    if (cardCategoryText === category.toLowerCase()) {
-                        cardContainer.style.display = 'block';
-                    } else {
-                        cardContainer.style.display = 'none';
-                    }
-                }
-            });
-            
-            // Recalculate stats for visible cards
-            setTimeout(calculateVisibleSkillsStats, 300);
-        }
-
-        function calculateVisibleSkillsStats() {
-            const visibleCards = Array.from(document.querySelectorAll('.skill-card'))
-                .filter(card => {
-                    const container = card.closest('.col-lg-4, .col-md-6');
-                    return container && container.style.display !== 'none';
-                });
-            
-            const totalVisible = visibleCards.length;
-            
-            if (totalVisible > 0) {
-                let totalProficiency = 0;
-                let expertCount = 0;
-                
-                visibleCards.forEach(card => {
-                    const progressBar = card.querySelector('.progress-bar');
-                    if (progressBar) {
-                        const proficiency = parseInt(progressBar.getAttribute('aria-valuenow') || '0');
-                        totalProficiency += proficiency;
-                        if (proficiency >= 80) expertCount++;
-                    }
-                });
-                
-                const avgProficiency = Math.round(totalProficiency / totalVisible);
-                
-                document.getElementById('totalSkills').textContent = totalVisible;
-                document.getElementById('avgProficiency').textContent = avgProficiency + '%';
-                document.getElementById('expertSkills').textContent = expertCount;
-            }
-        }
-
-        // Add some visual effects
+        // Add visual effects for skill cards
         function addSkillCardEffects() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -375,22 +442,16 @@
                 });
             }, { threshold: 0.1 });
 
-            // Observe skill cards when they're loaded
-            const checkForCards = setInterval(() => {
-                const cards = document.querySelectorAll('.skill-card');
-                if (cards.length > 0) {
-                    cards.forEach(card => {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        card.style.transition = 'all 0.6s ease';
-                        observer.observe(card);
-                    });
-                    clearInterval(checkForCards);
-                }
-            }, 100);
+            // Observe skill cards
+            const cards = document.querySelectorAll('.skill-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
         }
 
-        // Initialize effects
-        addSkillCardEffects();
+        // Remove the old initializeFilters function since we have initializeSkillFilters now
     </script>
 </asp:Content>

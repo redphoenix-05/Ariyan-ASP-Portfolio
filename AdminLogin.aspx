@@ -75,12 +75,6 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
-        .btn-login:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
         .alert {
             border-radius: 12px;
             border: none;
@@ -101,16 +95,11 @@
         .login-links a {
             color: #667eea;
             text-decoration: none;
-            margin: 0 1rem;
             transition: color 0.3s ease;
         }
 
         .login-links a:hover {
             color: #764ba2;
-        }
-
-        .loading-spinner {
-            display: none;
         }
 
         .security-info {
@@ -172,27 +161,8 @@
                     </label>
                 </div>
 
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="form-check">
-                        <asp:CheckBox ID="chkRememberMe" runat="server" CssClass="form-check-input" />
-                        <label class="form-check-label" for="chkRememberMe">
-                            Remember me
-                        </label>
-                    </div>
-                    <small>
-                        <a href="javascript:void(0)" onclick="showForgotPassword()">Forgot Password?</a>
-                    </small>
-                </div>
-
                 <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary btn-login" 
                     Text="Sign In" OnClick="btnLogin_Click" UseSubmitBehavior="true" />
-
-                <div class="loading-spinner text-center mt-3" id="loadingSpinner">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Signing in...</span>
-                    </div>
-                    <p class="mt-2 text-muted">Authenticating...</p>
-                </div>
 
                 <div class="security-info">
                     <small>
@@ -205,14 +175,6 @@
                     <a href="Default.aspx">
                         <i class="fas fa-home me-1"></i>Back to Portfolio
                     </a>
-                    <small class="text-muted d-block mt-2">
-                        <i class="fas fa-info-circle me-1"></i>
-                        Admin: Ariyan / Ariyan123
-                    </small>
-                    <!-- Debug redirect test button -->
-                    <asp:Button ID="btnTestRedirect" runat="server" CssClass="btn btn-outline-info btn-sm mt-2" 
-                        Text="Test Redirect" OnClick="btnTestRedirect_Click" 
-                        ToolTip="Debug: Test redirect to Admin.aspx" />
                 </div>
             </form>
         </div>
@@ -221,10 +183,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        function showForgotPassword() {
-            alert('Admin Credentials:\nUsername: Ariyan\nPassword: Ariyan123');
-        }
-
         // Auto-hide alerts after 5 seconds
         document.addEventListener('DOMContentLoaded', function() {
             const alert = document.querySelector('.alert');

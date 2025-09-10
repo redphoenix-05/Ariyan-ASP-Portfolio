@@ -17,14 +17,14 @@ namespace WebApplication1
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// lnkLogout control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.LinkButton lnkLogout;
+
+        /// <summary>
         /// litUsername control.
         /// </summary>
         protected global::System.Web.UI.WebControls.Literal litUsername;
-
-        /// <summary>
-        /// litUserDisplay control.
-        /// </summary>
-        protected global::System.Web.UI.WebControls.Literal litUserDisplay;
 
         /// <summary>
         /// litLoginTime control.
@@ -32,9 +32,157 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.Literal litLoginTime;
 
         /// <summary>
+        /// litUserDisplay control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Literal litUserDisplay;
+
+        /// <summary>
         /// litSessionId control.
         /// </summary>
         protected global::System.Web.UI.WebControls.Literal litSessionId;
+
+        // Skills CRUD Controls
+        /// <summary>
+        /// txtSkillName control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtSkillName;
+
+        /// <summary>
+        /// ddlSkillCategory control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSkillCategory;
+
+        /// <summary>
+        /// txtProficiency control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtProficiency;
+
+        /// <summary>
+        /// txtIconClass control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtIconClass;
+
+        /// <summary>
+        /// txtSkillDescription control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtSkillDescription;
+
+        /// <summary>
+        /// btnAddSkill control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Button btnAddSkill;
+
+        /// <summary>
+        /// UpdatePanelSkills control.
+        /// </summary>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelSkills;
+
+        /// <summary>
+        /// gvSkills control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.GridView gvSkills;
+
+        /// <summary>
+        /// btnRefreshSkills control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Button btnRefreshSkills;
+
+        // Projects CRUD Controls
+        /// <summary>
+        /// txtProjectTitle control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtProjectTitle;
+
+        /// <summary>
+        /// ddlProjectType control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProjectType;
+
+        /// <summary>
+        /// txtTechStack control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtTechStack;
+
+        /// <summary>
+        /// txtProjectDescription control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtProjectDescription;
+
+        /// <summary>
+        /// txtGitHubLink control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtGitHubLink;
+
+        /// <summary>
+        /// txtDemoLink control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtDemoLink;
+
+        /// <summary>
+        /// btnAddProject control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Button btnAddProject;
+
+        /// <summary>
+        /// UpdatePanelProjects control.
+        /// </summary>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelProjects;
+
+        /// <summary>
+        /// gvProjects control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.GridView gvProjects;
+
+        /// <summary>
+        /// btnRefreshProjects control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Button btnRefreshProjects;
+
+        // Achievements CRUD Controls
+        /// <summary>
+        /// txtAchievementTitle control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtAchievementTitle;
+
+        /// <summary>
+        /// txtOrganization control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtOrganization;
+
+        /// <summary>
+        /// txtAchievementDate control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtAchievementDate;
+
+        /// <summary>
+        /// txtAchievementDescription control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtAchievementDescription;
+
+        /// <summary>
+        /// txtAchievementCategory control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.TextBox txtAchievementCategory;
+
+        /// <summary>
+        /// btnAddAchievement control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Button btnAddAchievement;
+
+        /// <summary>
+        /// UpdatePanelAchievements control.
+        /// </summary>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelAchievements;
+
+        /// <summary>
+        /// gvAchievements control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.GridView gvAchievements;
+
+        /// <summary>
+        /// btnRefreshAchievements control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Button btnRefreshAchievements;
 
         /// <summary>
         /// btnLogout control.
