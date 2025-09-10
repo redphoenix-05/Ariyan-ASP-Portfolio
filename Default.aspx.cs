@@ -1,5 +1,7 @@
 using System;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Text;
 using System.Web.UI;
 
@@ -7,6 +9,8 @@ namespace WebApplication1
 {
     public partial class Default : Page
     {
+        private string connectionString = ConfigurationManager.ConnectionStrings["PortfolioConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -53,7 +57,7 @@ namespace WebApplication1
         {
             try
             {
-                DataTable stats = DatabaseHelper.GetProjectStats();
+                DataTable stats = GetProjectStats();
                 if (stats.Rows.Count > 0)
                 {
                     DataRow row = stats.Rows[0];
@@ -93,7 +97,7 @@ namespace WebApplication1
         {
             try
             {
-                DataTable skills = DatabaseHelper.GetSkills();
+                DataTable skills = GetSkills();
                 if (skills.Rows.Count > 0)
                 {
                     StringBuilder skillsHtml = new StringBuilder();
@@ -132,28 +136,28 @@ namespace WebApplication1
                     }
                     
                     // Inject dynamic skills into the page
-                    string skillsScript = $@"
-                        document.addEventListener('DOMContentLoaded', function() {{
+                    string skillsScript = @"
+                        document.addEventListener('DOMContentLoaded', function() {
                             const skillsContainer = document.querySelector('.skills-section .row');
-                            if (skillsContainer) {{
+                            if (skillsContainer) {
                                 const existingCards = skillsContainer.querySelectorAll('.col-md-6');
                                 existingCards.forEach(card => card.remove());
-                                skillsContainer.insertAdjacentHTML('beforeend', `{skillsHtml.ToString().Replace("`", "\\`").Replace("'", "\\'")}`.replace(/\\n\\s+/g, ''));
+                                skillsContainer.insertAdjacentHTML('beforeend', '" + skillsHtml.ToString().Replace("'", "\\'") + @"');
                                 console.log('Dynamic skills loaded');
                                 
                                 // Animate progress bars
-                                setTimeout(() => {{
+                                setTimeout(() => {
                                     const progressBars = skillsContainer.querySelectorAll('.progress-bar');
-                                    progressBars.forEach(bar => {{
+                                    progressBars.forEach(bar => {
                                         const width = bar.style.width;
                                         bar.style.width = '0%';
-                                        setTimeout(() => {{
+                                        setTimeout(() => {
                                             bar.style.width = width;
-                                        }}, 100);
-                                    }};
-                                }}, 500);
-                            }}
-                        }});";
+                                        }, 100);
+                                    });
+                                }, 500);
+                            }
+                        });";
                     
                     ClientScript.RegisterStartupScript(this.GetType(), "LoadSkills", skillsScript, true);
                 }
@@ -168,7 +172,7 @@ namespace WebApplication1
         {
             try
             {
-                DataTable projects = DatabaseHelper.GetFeaturedProjects();
+                DataTable projects = GetFeaturedProjects();
                 if (projects.Rows.Count > 0)
                 {
                     StringBuilder projectsHtml = new StringBuilder();
@@ -222,16 +226,16 @@ namespace WebApplication1
                     }
                     
                     // Inject dynamic projects into the page
-                    string projectsScript = $@"
-                        document.addEventListener('DOMContentLoaded', function() {{
+                    string projectsScript = @"
+                        document.addEventListener('DOMContentLoaded', function() {
                             const projectsContainer = document.querySelector('.services-section .row');
-                            if (projectsContainer) {{
+                            if (projectsContainer) {
                                 const existingCards = projectsContainer.querySelectorAll('.col-lg-4');
                                 existingCards.forEach(card => card.remove());
-                                projectsContainer.insertAdjacentHTML('beforeend', `{projectsHtml.ToString().Replace("`", "\\`").Replace("'", "\\'")}`.replace(/\\n\\s+/g, ''));
+                                projectsContainer.insertAdjacentHTML('beforeend', '" + projectsHtml.ToString().Replace("'", "\\'") + @"');
                                 console.log('Dynamic projects loaded');
-                            }}
-                        }});";
+                            }
+                        });";
                     
                     ClientScript.RegisterStartupScript(this.GetType(), "LoadProjects", projectsScript, true);
                 }
@@ -240,6 +244,56 @@ namespace WebApplication1
             {
                 System.Diagnostics.Debug.WriteLine($"Error loading featured projects: {ex.Message}");
             }
+        }
+
+        // Direct database methods
+        private DataTable GetProjectStats()
+        {
+            string query = @"
+                SELECT 
+                    (SELECT COUNT(*) FROM Projects WHERE IsActive = 1) as TotalProjects,
+                    (SELECT COUNT(*) FROM Projects WHERE IsActive = 1 AND ProjectType = 'Mobile') as MobileApps,
+                    (SELECT COUNT(*) FROM Projects WHERE IsActive = 1 AND ProjectType = 'Web') as WebApps,
+                    (SELECT COUNT(*) FROM Skills WHERE IsActive = 1) as Technologies,
+                    (SELECT COUNT(*) FROM Achievements WHERE IsActive = 1) as Achievements";
+            
+            return ExecuteQuery(query);
+        }
+
+        private DataTable GetSkills()
+        {
+            string query = "SELECT SkillName, SkillCategory, ProficiencyLevel, IconClass, Description FROM Skills WHERE IsActive = 1 ORDER BY DisplayOrder, SkillName";
+            return ExecuteQuery(query);
+        }
+
+        private DataTable GetFeaturedProjects()
+        {
+            string query = "SELECT TOP 3 Title, Description, TechStack, GitHubLink, DemoLink, ProjectType, Status FROM Projects WHERE IsActive = 1 AND IsFeatured = 1 ORDER BY DisplayOrder";
+            return ExecuteQuery(query);
+        }
+
+        private DataTable ExecuteQuery(string query)
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Database query error: {ex.Message}");
+            }
+            return dataTable;
         }
 
         private string GetCategoryColor(string category)

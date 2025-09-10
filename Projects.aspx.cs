@@ -1,5 +1,7 @@
 using System;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Text;
 using System.Web.UI;
 
@@ -7,6 +9,8 @@ namespace WebApplication1
 {
     public partial class Projects : Page
     {
+        private string connectionString = ConfigurationManager.ConnectionStrings["PortfolioConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,84 +23,102 @@ namespace WebApplication1
         {
             try
             {
-                // Use simple static content without complex interpolated strings
-                ShowSimpleProjectsContent();
+                DataTable projects = GetAllProjects();
+                if (projects.Rows.Count > 0)
+                {
+                    LoadAllProjects(projects);
+                }
+                else
+                {
+                    ShowNoProjectsMessage();
+                }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error loading projects: {ex.Message}");
-                ShowSimpleErrorMessage(ex.Message);
+                ShowErrorMessage(ex.Message);
             }
         }
 
-        private void ShowSimpleProjectsContent()
+        private DataTable GetAllProjects()
         {
-            string staticScript = @"
-                document.addEventListener('DOMContentLoaded', function() {
-                    const mainContainer = document.querySelector('.container .row');
-                    if (mainContainer) {
-                        mainContainer.innerHTML = '<div class=""col-12 text-center py-5"">' +
-                            '<div class=""alert alert-success border-0 shadow-lg"">' +
-                            '<i class=""fas fa-check-circle fa-4x mb-4 text-success""></i>' +
-                            '<h3>Projects Page Ready</h3>' +
-                            '<p class=""lead mb-3"">Your dynamic projects system is configured and ready.</p>' +
-                            '<p class=""text-muted"">Use the admin panel to add projects.</p>' +
-                            '</div></div>';
-                    }
-                });";
+            string query = "SELECT Title, Description, TechStack, GitHubLink, DemoLink, ProjectType, Status FROM Projects WHERE IsActive = 1 ORDER BY DisplayOrder, CreatedDate DESC";
             
-            ClientScript.RegisterStartupScript(this.GetType(), "StaticProjects", staticScript, true);
-        }
-
-        private void LoadFeaturedProjects(DataTable featuredProjects)
-        {
-            if (featuredProjects.Rows.Count > 0)
+            DataTable dataTable = new DataTable();
+            try
             {
-                StringBuilder featuredHtml = new StringBuilder();
-                
-                foreach (DataRow row in featuredProjects.Rows)
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string projectCard = CreateProjectCard(row, true);
-                    featuredHtml.Append(projectCard);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
                 }
-                
-                string featuredScript = $@"
-                    document.addEventListener('DOMContentLoaded', function() {{
-                        const featuredContainer = document.querySelector('#featuredProjectsRow');
-                        if (featuredContainer) {{
-                            featuredContainer.innerHTML = `{featuredHtml.ToString().Replace("`", "\\`").Replace("'", "\\'")}`;
-                            console.log('Featured projects loaded:', featuredContainer.children.length);
-                            initProjectAnimations('.featured-projects');
-                        }}
-                    }});";
-                
-                ClientScript.RegisterStartupScript(this.GetType(), "LoadFeaturedProjects", featuredScript, true);
             }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Database query error: {ex.Message}");
+            }
+            return dataTable;
         }
 
         private void LoadAllProjects(DataTable allProjects)
         {
-            // Simplified approach without complex interpolated strings
-            string simpleScript = @"
-                document.addEventListener('DOMContentLoaded', function() {
-                    console.log('Projects system initialized');
-                    
-                    // Simple filter functionality
-                    const filterButtons = document.querySelectorAll('[data-filter]');
-                    if (filterButtons.length > 0) {
-                        filterButtons.forEach(button => {
-                            button.addEventListener('click', function() {
-                                const filter = this.getAttribute('data-filter');
-                                console.log('Filter clicked:', filter);
-                            });
-                        });
-                    }
-                });";
+            StringBuilder projectsHtml = new StringBuilder();
             
-            ClientScript.RegisterStartupScript(this.GetType(), "LoadAllProjects", simpleScript, true);
+            foreach (DataRow row in allProjects.Rows)
+            {
+                string projectCard = CreateProjectCard(row);
+                projectsHtml.Append(projectCard);
+            }
+            
+            string allProjectsScript = @"
+                document.addEventListener('DOMContentLoaded', function() {
+                    const projectsContainer = document.querySelector('.projects-container .row');
+                    if (projectsContainer) {
+                        projectsContainer.innerHTML = '" + projectsHtml.ToString().Replace("'", "\\'") + @"';
+                        console.log('Projects loaded from database');
+                        initProjectFilters();
+                    }
+                });
+                
+                function initProjectFilters() {
+                    // Add filter functionality
+                    const filterButtons = document.querySelectorAll('[data-filter]');
+                    filterButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            const filter = this.getAttribute('data-filter');
+                            filterProjects(filter);
+                            updateActiveFilter(this);
+                        });
+                    });
+                }
+                
+                function filterProjects(category) {
+                    const allProjects = document.querySelectorAll('.project-card');
+                    allProjects.forEach(project => {
+                        if (category === 'all' || project.getAttribute('data-category') === category) {
+                            project.closest('.col-lg-4, .col-md-6').style.display = 'block';
+                        } else {
+                            project.closest('.col-lg-4, .col-md-6').style.display = 'none';
+                        }
+                    });
+                }
+                
+                function updateActiveFilter(activeButton) {
+                    const filterButtons = document.querySelectorAll('[data-filter]');
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    activeButton.classList.add('active');
+                }";
+            
+            ClientScript.RegisterStartupScript(this.GetType(), "LoadAllProjects", allProjectsScript, true);
         }
 
-        private string CreateProjectCard(DataRow row, bool isFeatured)
+        private string CreateProjectCard(DataRow row)
         {
             string title = row["Title"].ToString();
             string description = row["Description"].ToString();
@@ -115,13 +137,9 @@ namespace WebApplication1
             // Create tech stack badges
             string techBadges = CreateTechStackBadges(techStack);
             
-            // Featured projects have different styling
-            string cardClass = isFeatured ? "project-card featured-project" : "project-card";
-            string cardSize = isFeatured ? "col-lg-6 col-md-6" : "col-lg-4 col-md-6";
-            
             return $@"
-                <div class='{cardSize} mb-4'>
-                    <div class='card h-100 {cardClass} shadow-hover' data-category='{projectType.ToLower()}' data-aos='fade-up'>
+                <div class='col-lg-4 col-md-6 mb-4'>
+                    <div class='card h-100 project-card shadow-hover' data-category='{projectType.ToLower()}'>
                         <div class='position-relative'>
                             <img src='{imageUrl}' class='card-img-top project-image' alt='{title}' style='height: 220px; object-fit: cover;'>
                             <div class='project-overlay'>
@@ -183,25 +201,13 @@ namespace WebApplication1
             return badges.ToString();
         }
 
-        private void AddProjectStatistics(DataTable allProjects)
-        {
-            int totalProjects = allProjects.Rows.Count;
-            
-            string statsScript = $@"
-                document.addEventListener('DOMContentLoaded', function() {{
-                    console.log('Project statistics: {totalProjects} total projects');
-                }});";
-            
-            ClientScript.RegisterStartupScript(this.GetType(), "ProjectStats", statsScript, true);
-        }
-
         private void ShowNoProjectsMessage()
         {
             string noDataScript = @"
                 document.addEventListener('DOMContentLoaded', function() {
-                    const mainContainer = document.querySelector('.container .row');
-                    if (mainContainer) {
-                        mainContainer.innerHTML = `
+                    const projectsContainer = document.querySelector('.projects-container .row');
+                    if (projectsContainer) {
+                        projectsContainer.innerHTML = `
                             <div class='col-12 text-center py-5'>
                                 <div class='alert alert-info border-0 shadow-lg'>
                                     <i class='fas fa-folder-open fa-4x mb-4 text-info'></i>
@@ -217,18 +223,22 @@ namespace WebApplication1
             ClientScript.RegisterStartupScript(this.GetType(), "NoProjects", noDataScript, true);
         }
 
-        private void ShowSimpleErrorMessage(string error)
+        private void ShowErrorMessage(string error)
         {
             string errorScript = @"
                 document.addEventListener('DOMContentLoaded', function() {
-                    const mainContainer = document.querySelector('.container .row');
-                    if (mainContainer) {
-                        mainContainer.innerHTML = '<div class=""col-12 text-center py-5"">' +
-                            '<div class=""alert alert-danger border-0 shadow-lg"">' +
-                            '<i class=""fas fa-exclamation-triangle fa-4x mb-4 text-danger""></i>' +
-                            '<h3>Error Loading Projects</h3>' +
-                            '<p class=""lead mb-3"">Unable to load projects from the database.</p>' +
-                            '</div></div>';
+                    const projectsContainer = document.querySelector('.projects-container .row');
+                    if (projectsContainer) {
+                        projectsContainer.innerHTML = `
+                            <div class='col-12 text-center py-5'>
+                                <div class='alert alert-danger border-0 shadow-lg'>
+                                    <i class='fas fa-exclamation-triangle fa-4x mb-4 text-danger'></i>
+                                    <h3>Error Loading Projects</h3>
+                                    <p class='lead mb-3'>Unable to load projects from the database.</p>
+                                    <p class='text-muted'>Error: " + error.Replace("'", "\\'") + @"</p>
+                                </div>
+                            </div>
+                        `;
                     }
                 });";
             

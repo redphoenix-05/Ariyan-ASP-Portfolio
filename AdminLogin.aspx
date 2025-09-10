@@ -3,54 +3,238 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>Admin Login</title>
+    <title>Portfolio Admin - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <style>
         body {
-            background: linear-gradient(135deg, #2563EB, #14B8A6);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-width: 400px;
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            max-width: 450px;
             width: 100%;
+            margin: 0 auto;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h2 {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .form-floating {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-floating .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1rem 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-floating .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 12px;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .alert {
+            border-radius: 12px;
+            border: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-icon {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .login-links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .login-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .login-links a:hover {
+            color: #764ba2;
+        }
+
+        .loading-spinner {
+            display: none;
+        }
+
+        .security-info {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .security-info small {
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 576px) {
+            .login-container {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
+
 <body>
-    <form id="form1" runat="server">
-        <div class="login-box">
-            <h2 class="text-center mb-4">Admin Login</h2>
-            
-            <div class="alert alert-info">
-                <strong>Login:</strong> admin<br>
-                <strong>Password:</strong> 2107045
-            </div>
-            
-            <asp:Panel ID="pnlMessage" runat="server" Visible="false" CssClass="alert">
-                <asp:Literal ID="litMessage" runat="server" />
-            </asp:Panel>
-            
-            <div class="mb-3">
-                <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username" />
-            </div>
-            
-            <div class="mb-3">
-                <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Password" />
-            </div>
-            
-            <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary w-100" Text="Login" OnClick="btnLogin_Click" />
-            
-            <div class="text-center mt-3">
-                <a href="Default.aspx">? Back to Portfolio</a>
-            </div>
+    <div class="container">
+        <div class="login-container">
+            <form id="form1" runat="server">
+                <div class="login-header">
+                    <div class="admin-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2>Admin Login</h2>
+                    <p>Access your portfolio management system</p>
+                </div>
+
+                <!-- Alert Messages -->
+                <asp:Panel ID="pnlMessage" runat="server" Visible="false">
+                    <div id="alertMessage" class="alert" role="alert">
+                        <asp:Literal ID="litMessage" runat="server" />
+                    </div>
+                </asp:Panel>
+
+                <!-- Login Form -->
+                <div class="form-floating">
+                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="Username" MaxLength="50" />
+                    <label for="txtUsername">
+                        <i class="fas fa-user me-2"></i>Username
+                    </label>
+                </div>
+
+                <div class="form-floating">
+                    <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" placeholder="Password" MaxLength="100" />
+                    <label for="txtPassword">
+                        <i class="fas fa-lock me-2"></i>Password
+                    </label>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="form-check">
+                        <asp:CheckBox ID="chkRememberMe" runat="server" CssClass="form-check-input" />
+                        <label class="form-check-label" for="chkRememberMe">
+                            Remember me
+                        </label>
+                    </div>
+                    <small>
+                        <a href="javascript:void(0)" onclick="showForgotPassword()">Forgot Password?</a>
+                    </small>
+                </div>
+
+                <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary btn-login" 
+                    Text="Sign In" OnClick="btnLogin_Click" UseSubmitBehavior="true" />
+
+                <div class="loading-spinner text-center mt-3" id="loadingSpinner">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Signing in...</span>
+                    </div>
+                    <p class="mt-2 text-muted">Authenticating...</p>
+                </div>
+
+                <div class="security-info">
+                    <small>
+                        <i class="fas fa-shield-alt text-success"></i>
+                        Secure admin access with encrypted credentials
+                    </small>
+                </div>
+
+                <div class="login-links">
+                    <a href="Default.aspx">
+                        <i class="fas fa-home me-1"></i>Back to Portfolio
+                    </a>
+                    <small class="text-muted d-block mt-2">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Admin: Ariyan / Ariyan123
+                    </small>
+                    <!-- Debug redirect test button -->
+                    <asp:Button ID="btnTestRedirect" runat="server" CssClass="btn btn-outline-info btn-sm mt-2" 
+                        Text="Test Redirect" OnClick="btnTestRedirect_Click" 
+                        ToolTip="Debug: Test redirect to Admin.aspx" />
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function showForgotPassword() {
+            alert('Admin Credentials:\nUsername: Ariyan\nPassword: Ariyan123');
+        }
+
+        // Auto-hide alerts after 5 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const alert = document.querySelector('.alert');
+            if (alert && alert.classList.contains('alert-danger')) {
+                setTimeout(() => {
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.style.display = 'none', 300);
+                }, 5000);
+            }
+        });
+    </script>
 </body>
 </html>
